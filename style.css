@@ -1,0 +1,48 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #eee;
+}
+header {
+    background: url('wedding_banner.jpg') no-repeat center center/cover;
+    height: 200px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-shadow: 1px 1px 0 #000;
+}
+form {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.venue {
+    background: #fff;
+    margin: 10px auto;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+label, input, select, button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+button {
+    color: #fff;
+    background: #007BFF;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+button:hover {
+    background: #0056b3;
+}
+.error {
+    color: red;
+}

@@ -1,8 +1,12 @@
 <?php
-session_start(); // Start the session at the beginning of the script
+session_start();
+
+function getDayOfWeek($date) {
+    $timestamp = strtotime($date);
+    return date("w", $timestamp); // Returns day of the week (0 for Sunday, 6 for Saturday)
+}
 
 if (isset($_POST['findVenues'])) {
-    // Validate input
     $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
     $partySize = filter_input(INPUT_POST, 'partySize', FILTER_VALIDATE_INT);
     $cateringGrade = filter_input(INPUT_POST, 'cateringGrade', FILTER_VALIDATE_INT);
@@ -13,17 +17,16 @@ if (isset($_POST['findVenues'])) {
         exit();
     }
 
-    // Set up database connection
+    $_SESSION['isWeekend'] = getDayOfWeek($date) == 0 || getDayOfWeek($date) == 6; // Determine if it's a weekend
+
     $conn = new mysqli('sci-mysql', 'coa123wuser', 'grt64dkh!@2FD', 'coa123wdb');
     if ($conn->connect_error) {
-        error_log("Connection failed: " . $conn->connect_error); // Log error to server's error log
         $_SESSION['results'] = "Failed to connect to the database. Please try again later.";
         header('Location: wedding.php');
         exit();
     }
 
-    // SQL query setup
-    $sql = "SELECT venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost, 
+    $sql = "SELECT venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost,
             COALESCE(AVG(venue_review_score.score)/2, 0) AS average_rating
             FROM venue
             JOIN catering ON venue.venue_id = catering.venue_id
@@ -33,26 +36,24 @@ if (isset($_POST['findVenues'])) {
             GROUP BY venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost
             ORDER BY venue.capacity ASC";
 
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sii", $date, $partySize, $cateringGrade);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sii", $date, $partySize, $cateringGrade);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        $_SESSION['results'] = [];
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $_SESSION['results'][] = $row;
-            }
-        } else {
-            $_SESSION['results'] = "No venues found matching your criteria.";
+    $_SESSION['results'] = [];
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $totalPrice = ($_SESSION['isWeekend'] ? $row['weekend_price'] : $row['weekday_price']) + ($partySize * $row['cost']);
+            $row['total_price'] = $totalPrice; // Add total price to the row array
+            $_SESSION['results'][] = $row;
         }
-        $stmt->close();
     } else {
-        $_SESSION['results'] = "Failed to prepare the database query. Please try again later.";
+        $_SESSION['results'] = "No venues found matching your criteria.";
     }
-
+    $stmt->close();
     $conn->close();
-    header('Location: wedding.php'); // Redirect to clear POST data
+    header('Location: wedding.php');
     exit();
 }
 ?>
@@ -63,53 +64,11 @@ if (isset($_POST['findVenues'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Venue Finder</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background: #eee; }
-        header {
-            background: url('wedding_banner.jpg') no-repeat center center/cover;
-            height: 200px;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            text-shadow: 1px 1px 0 #000;
-        }
-        form {
-            background: #fff;
-            padding: 20px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .venue {
-            background: #fff;
-            margin: 10px auto;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        label, input, select, button {
-            display: block;
-            width: 100%;
-            margin-top: 10px;
-        }
-        button {
-            color: #fff;
-            background: #007BFF;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .error { color: red; }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
-    <header>Wedding Venue Finder</header>
+    <header>Welcome to Our Wedding Venue Finder</header>
     <form method="post">
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
@@ -128,40 +87,24 @@ if (isset($_POST['findVenues'])) {
         
         <button type="submit" name="findVenues">Find Venues</button>
     </form>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-        const date = document.getElementById('date').value;
-        const partySize = document.getElementById('partySize').value;
-        const grade = document.getElementById('cateringGrade').value;
-        
-        if (!date || partySize <= 0 || grade < 1 || grade > 5) {
-            e.preventDefault(); // Prevent form submission
-            alert("Please check your inputs. Make sure dates are selected and values are within the allowed ranges.");
-            return false;
-        }
-    });
-});
-</script>
 <?php
 if (isset($_SESSION['results'])) {
     if (is_array($_SESSION['results'])) {
         foreach ($_SESSION['results'] as $row) {
-            // Replace spaces with underscores and convert the venue name to lowercase for the image name
             $imageName = strtolower(str_replace(" ", "_", $row["name"])) . ".jpg";
-            $imagePath = $imageName; // Assuming the images are stored in a specific folder
+            $imagePath = $imageName;  // Assuming the images are in the same folder as the PHP file
 
             $rating = round($row["average_rating"], 1);
             $stars = str_repeat("★", floor($rating)) . (floor($rating) < $rating ? "½" : "");
             $emptyStars = str_repeat("☆", 5 - ceil($rating));
+            $totalPrice = $row['total_price'];  // Total price calculated during the SQL query processing
             
             echo "<div class='venue'><img src='" . htmlspecialchars($imagePath) . "' alt='Image of " . htmlspecialchars($row["name"]) . "' style='float: left; margin-right: 10px; width: 100px; height: 100px; object-fit: cover; border-radius: 5px;'>" .
                  "<strong>" . htmlspecialchars($row["name"]) . "</strong><br>" .
                  "Capacity: " . htmlspecialchars($row["capacity"]) . "<br>" .
-                 "Price (Weekend): £" . htmlspecialchars($row["weekend_price"]) . "<br>" .
-                 "Price (Weekday): £" . htmlspecialchars($row["weekday_price"]) . "<br>" .
+                 "Price (Appropriate Day): £" . htmlspecialchars($_SESSION['isWeekend'] ? $row['weekend_price'] : $row['weekday_price']) . "<br>" .
                  "Catering Cost (Per Person): £" . htmlspecialchars($row["cost"]) . "<br>" .
+                 "Total Price: £" . htmlspecialchars($totalPrice) . "<br>" . 
                  "Rating: " . $stars . $emptyStars . " (" . $rating . "/5)</div>";
         }
     } else {
@@ -170,6 +113,5 @@ if (isset($_SESSION['results'])) {
     unset($_SESSION['results']); // Clear the results from session after displaying
 }
 ?>
-
 </body>
 </html>
