@@ -2,50 +2,61 @@
 session_start(); // Start the session at the beginning of the script
 
 if (isset($_POST['findVenues'])) {
-    // Connect to the database
-    $conn = new mysqli('sci-mysql', 'coa123wuser', 'grt64dkh!@2FD', 'coa123wdb');
+    // Validate input
+    $date = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
+    $partySize = filter_input(INPUT_POST, 'partySize', FILTER_VALIDATE_INT);
+    $cateringGrade = filter_input(INPUT_POST, 'cateringGrade', FILTER_VALIDATE_INT);
 
-    // Check connection
+    if (!$date || !$partySize || !$cateringGrade || $partySize <= 0 || $cateringGrade < 1 || $cateringGrade > 5) {
+        $_SESSION['results'] = "Invalid input provided. Please check your entries and try again.";
+        header('Location: wedding.php');
+        exit();
+    }
+
+    // Set up database connection
+    $conn = new mysqli('sci-mysql', 'coa123wuser', 'grt64dkh!@2FD', 'coa123wdb');
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        error_log("Connection failed: " . $conn->connect_error); // Log error to server's error log
+        $_SESSION['results'] = "Failed to connect to the database. Please try again later.";
+        header('Location: wedding.php');
+        exit();
     }
-    
-    $date = $_POST['date'];
-    $partySize = $_POST['partySize'];
-    $cateringGrade = $_POST['cateringGrade'];
-    
-    // Adjusted SQL query to match the catering grade exactly
+
+    // SQL query setup
     $sql = "SELECT venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost, 
-    COALESCE(AVG(venue_review_score.score)/2, 0) AS average_rating
-    FROM venue
-    JOIN catering ON venue.venue_id = catering.venue_id
-    LEFT JOIN venue_booking ON venue.venue_id = venue_booking.venue_id AND venue_booking.booking_date = ?
-    LEFT JOIN venue_review_score ON venue.venue_id = venue_review_score.venue_id
-    WHERE venue.capacity >= ? AND catering.grade = ? AND venue_booking.venue_id IS NULL
-    GROUP BY venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost
-    ORDER BY venue.capacity ASC";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sii", $date, $partySize, $cateringGrade);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    $_SESSION['results'] = []; // Initialize session variable to store results
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $_SESSION['results'][] = $row;
+            COALESCE(AVG(venue_review_score.score)/2, 0) AS average_rating
+            FROM venue
+            JOIN catering ON venue.venue_id = catering.venue_id
+            LEFT JOIN venue_booking ON venue.venue_id = venue_booking.venue_id AND venue_booking.booking_date = ?
+            LEFT JOIN venue_review_score ON venue.venue_id = venue_review_score.venue_id
+            WHERE venue.capacity >= ? AND catering.grade = ? AND venue_booking.venue_id IS NULL
+            GROUP BY venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost
+            ORDER BY venue.capacity ASC";
+
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("sii", $date, $partySize, $cateringGrade);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $_SESSION['results'] = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $_SESSION['results'][] = $row;
+            }
+        } else {
+            $_SESSION['results'] = "No venues found matching your criteria.";
         }
+        $stmt->close();
     } else {
-        $_SESSION['results'] = "No venues found matching your criteria.";
+        $_SESSION['results'] = "Failed to prepare the database query. Please try again later.";
     }
-    
-    $stmt->close();
+
     $conn->close();
-    
     header('Location: wedding.php'); // Redirect to clear POST data
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +67,7 @@ if (isset($_POST['findVenues'])) {
         body { font-family: Arial, sans-serif; margin: 20px; }
         label, select, input[type="date"], input[type="number"], button { margin-top: 10px; }
         .venue { margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .error { color: red; }
     </style>
 </head>
 <body>
@@ -65,7 +77,7 @@ if (isset($_POST['findVenues'])) {
         <input type="date" id="date" name="date" required>
         
         <label for="partySize">Party Size:</label>
-        <input type="number" id="partySize" name="partySize" required>
+        <input type="number" id="partySize" name="partySize" required min="1">
         
         <label for="cateringGrade">Catering Grade:</label>
         <select id="cateringGrade" name="cateringGrade">
@@ -95,10 +107,9 @@ if (isset($_SESSION['results'])) {
                  "Rating: " . $stars . $emptyStars . " (" . $rating . "/5)" . "</div>";
         }
     } else {
-        // Display message if no venues were found
-        echo "<p>{$_SESSION['results']}</p>";
+        echo "<p class='error'>" . $_SESSION['results'] . "</p>";
     }
-    unset($_SESSION['results']); // Clear the results from session
+    unset($_SESSION['results']); // Clear the results from session after displaying
 }
 ?>
 </body>
