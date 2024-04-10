@@ -63,14 +63,19 @@ if (isset($_POST['findVenues'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Venue Finder</title>
+    <title>Vows & Venues - Find Your Perfect Wedding Venue</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-    <header>Welcome to Our Wedding Venue Finder</header>
+    <header>
+        <img src="Vows_&_Venues_logo.png" alt="Vows & Venues Logo" id="logo"> <!-- Make sure the src matches the location of your logo file -->
+        <h1>Welcome to Vows & Venues</h1>
+    </header>
     <form method="post">
-        <label for="date">Date:</label>
+        <label for="date">Wedding Date:</label>
         <input type="date" id="date" name="date" required>
         
         <label for="partySize">Party Size:</label>
@@ -85,33 +90,35 @@ if (isset($_POST['findVenues'])) {
             <option value="5">Luxury</option>
         </select>
         
-        <button type="submit" name="findVenues">Find Venues</button>
+        <button type="submit" name="findVenues">Search Venues</button>
     </form>
-<?php
-if (isset($_SESSION['results'])) {
-    if (is_array($_SESSION['results'])) {
-        foreach ($_SESSION['results'] as $row) {
-            $imageName = strtolower(str_replace(" ", "_", $row["name"])) . ".jpg";
-            $imagePath = $imageName;  // Assuming the images are in the same folder as the PHP file
+    <?php
+    if (isset($_SESSION['results'])) {
+        if (is_array($_SESSION['results'])) {
+            echo "<div class='results-container'>";
+            foreach ($_SESSION['results'] as $row) {
+                $imageName = strtolower(str_replace(" ", "_", $row["name"])) . ".jpg";
+                $imagePath = $imageName;  // Assuming images are in the same folder as the PHP file
 
-            $rating = round($row["average_rating"], 1);
-            $stars = str_repeat("★", floor($rating)) . (floor($rating) < $rating ? "½" : "");
-            $emptyStars = str_repeat("☆", 5 - ceil($rating));
-            $totalPrice = $row['total_price'];  // Total price calculated during the SQL query processing
-            
-            echo "<div class='venue'><img src='" . htmlspecialchars($imagePath) . "' alt='Image of " . htmlspecialchars($row["name"]) . "' style='float: left; margin-right: 10px; width: 100px; height: 100px; object-fit: cover; border-radius: 5px;'>" .
-                 "<strong>" . htmlspecialchars($row["name"]) . "</strong><br>" .
-                 "Capacity: " . htmlspecialchars($row["capacity"]) . "<br>" .
-                 "Price (Appropriate Day): £" . htmlspecialchars($_SESSION['isWeekend'] ? $row['weekend_price'] : $row['weekday_price']) . "<br>" .
-                 "Catering Cost (Per Person): £" . htmlspecialchars($row["cost"]) . "<br>" .
-                 "Total Price: £" . htmlspecialchars($totalPrice) . "<br>" . 
-                 "Rating: " . $stars . $emptyStars . " (" . $rating . "/5)</div>";
+                $rating = round($row["average_rating"], 1);
+                $stars = str_repeat("★", floor($rating)) . (floor($rating) < $rating ? "½" : "");
+                $emptyStars = str_repeat("☆", 5 - ceil($rating));
+                $totalPrice = $row['total_price'];
+
+                echo "<div class='venue clearfix'><img src='" . htmlspecialchars($imagePath) . "' alt='Image of " . htmlspecialchars($row["name"]) . "'>" .
+                     "<div><strong>" . htmlspecialchars($row["name"]) . "</strong><br>" .
+                     "Capacity: " . htmlspecialchars($row["capacity"]) . "<br>" .
+                     "Price: £" . htmlspecialchars($_SESSION['isWeekend'] ? $row['weekend_price'] : $row['weekday_price']) . "<br>" .
+                     "Catering Cost: £" . htmlspecialchars($row["cost"]) . " per person<br>" .
+                     "Total Price: £" . htmlspecialchars($totalPrice) . "<br>" . 
+                     "Rating: " . $stars . $emptyStars . " (" . $rating . "/5)" . "</div></div>";
+            }
+            echo "</div>";
+        } else {
+            echo "<p class='error'>" . $_SESSION['results'] . "</p>";
         }
-    } else {
-        echo "<p class='error'>" . $_SESSION['results'] . "</p>";
+        unset($_SESSION['results']);
     }
-    unset($_SESSION['results']); // Clear the results from session after displaying
-}
-?>
+    ?>
 </body>
 </html>
