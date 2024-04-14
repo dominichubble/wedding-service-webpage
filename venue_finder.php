@@ -1,4 +1,6 @@
 <?php
+require_once 'db_connection.php'; // Include the database connection
+
 session_start();
 
 function getDayOfWeek($date) {
@@ -17,15 +19,10 @@ if (isset($_POST['findVenues'])) {
         exit();
     }
 
-    $_SESSION['isWeekend'] = getDayOfWeek($date) == 0 || getDayOfWeek($date) == 6; // Determine if it's a weekend
+    // Determine if it's a weekend
+    $_SESSION['isWeekend'] = getDayOfWeek($date) == 0 || getDayOfWeek($date) == 6;
 
-    $conn = new mysqli('sci-mysql', 'coa123wuser', 'grt64dkh!@2FD', 'coa123wdb');
-    if ($conn->connect_error) {
-        $_SESSION['results'] = "Failed to connect to the database. Please try again later.";
-        header('Location: wedding.php');
-        exit();
-    }
-
+    // SQL query setup
     $sql = "SELECT venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost,
             COALESCE(AVG(venue_review_score.score)/2, 0) AS average_rating
             FROM venue
@@ -36,11 +33,15 @@ if (isset($_POST['findVenues'])) {
             GROUP BY venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost
             ORDER BY venue.capacity ASC";
 
+    // Prepare the SQL statement
     $stmt = $conn->prepare($sql);
+
+    // Bind parameters and execute the statement
     $stmt->bind_param("sii", $date, $partySize, $cateringGrade);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    // Process the results
     $_SESSION['results'] = [];
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -51,9 +52,14 @@ if (isset($_POST['findVenues'])) {
     } else {
         $_SESSION['results'] = "No venues found matching your criteria.";
     }
+    
+    // Close statement and connection
     $stmt->close();
-    $conn->close();
+    
     header('Location: wedding.php');
     exit();
 }
+
+// Close the database connection
+$conn->close();
 ?>
