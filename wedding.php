@@ -22,8 +22,8 @@ include 'venue_finder.php'; // This will include the PHP script logic
         <label for="date">Wedding Date:</label>
         <input type="date" id="date" name="date" required>
         
-        <label for="partySize">Party Size:</label>
-        <input type="number" id="partySize" name="partySize" required min="1">
+        <label for="partySize">Party Size: <span id="partySizeValue">50</span></label>
+        <input type="range" id="partySize" name="partySize" min="10" max="300" value="50" oninput="updatePartySizeValue(this.value)" required>
         
         <label for="cateringGrade">Catering Grade:</label>
         <select id="cateringGrade" name="cateringGrade">
@@ -36,6 +36,7 @@ include 'venue_finder.php'; // This will include the PHP script logic
         
         <button type="submit" name="findVenues">Search Venues</button>
     </form>
+    <script src="script.js"></script>
     <?php
     if (isset($_SESSION['results'])) {
         if (is_array($_SESSION['results'])) {

@@ -1,118 +1,136 @@
-/* General Body Styles */
+/* Assuming the logo colors are teal (#00A693) and a lighter shade for accents (#B2DFDB) */
+
 body, html {
     height: 100%;
     margin: 0;
-    padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
-    color: #333;
+    color: #333333;
 }
 
-/* Header Styles */
 header {
-    background-color: #003580; /* Deep blue shade */
-    color: white;
-    font-size: 24px;
+    background-color: #00A693; /* primary color from the logo */
+    padding: 20px 0;
     text-align: center;
-    padding: 20px 10px;
 }
 
-/* Main Content and Venue Details */
-main {
-    width: 80%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-h1 {
-    color: #003580;
-}
-
-/* Section for Venue Images */
-.venue-images {
-    text-align: center;
-    padding: 20px;
-}
-
-.venue-images img.main-image {
-    max-width: 100%;
+header img {
+    width: 100px; /* Adjust as necessary for your logo */
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-/* Detailed Information Style */
-.venue-details h2 {
-    color: #003580; /* Blue shade for subheadings */
-    margin-top: 20px;
-}
-
-.venue-details p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666; /* Lighter text color for details */
-}
-
-/* Map Container Styles */
-#map {
-    width: 100%;
-    height: 400px;
-    margin-top: 20px;
-    border-radius: 8px;
-    overflow: hidden; /* Ensures the map corners are rounded */
-}
-
-/* Form Styles */
 form {
     background-color: #ffffff;
-    padding: 20px;
+    max-width: 320px;
+    margin: 2rem auto;
+    padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-form label {
-    margin-top: 12px;
-    color: #333;
+label {
+    display: block;
+    margin-top: 1rem;
 }
 
-form input[type="date"],
-form input[type="number"],
-form select,
-form button {
+input[type="date"],
+input[type="number"],
+select {
     width: 100%;
-    padding: 8px;
-    margin-top: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #B2DFDB; /* lighter shade from the logo */
     border-radius: 4px;
 }
 
-/* Button Specific Styles */
 button {
-    background-color: #ff6200;
+    width: 100%;
+    background-color: #00A693;
     color: white;
-    padding: 10px 15px;
+    padding: 0.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
+    margin-top: 1rem;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 button:hover {
-    background-color: #e55a00;
+    background-color: #00897B; /* a darker shade of the primary color */
 }
 
-/* Responsive Design Adjustments */
-@media (min-width: 600px) {
-    form, .venue, main {
-        max-width: 540px;
+.venue {
+    background-color: #ffffff;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 320px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.venue img {
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.venue strong {
+    color: #00A693; /* primary color for emphasis */
+    font-size: 1.2rem;
+}
+
+.venue-details {
+    margin-top: 1rem;
+}
+
+.error {
+    color: #CC0000; /* Adjust color for better visibility */
+    text-align: center;
+    margin-top: 1rem;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box; /* This makes sure padding is included in the element's total width */
+    padding: 0.5rem;
+}
+
+/* Wrap your search boxes in a container with the class "search-container" */
+.search-container {
+    display: flex;
+    flex-wrap: wrap; /* This allows the search boxes to wrap onto the next line if there isn't enough space */
+    justify-content: space-between; /* This adds some space between the search boxes */
+}
+
+/* Adjust the width of the search boxes based on the screen size */
+@media (max-width: 600px) {
+    .search-container input {
+        flex: 0 0 100%; /* On small screens, make the search boxes take up the full width */
     }
+}
+
+@media (min-width: 601px) {
+    .search-container input {
+        flex: 0 0 calc(50% - 1rem); /* On larger screens, make the search boxes take up half the width minus a little for spacing */
+    }
+}
+
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.venue {
+    flex: 0 0 calc(50% - 1rem); /* Adjust this value to control how many results are displayed per row */
+    background-color: #ffffff;
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 8px;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
 }

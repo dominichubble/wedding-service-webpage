@@ -12,3 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function updatePartySizeValue(value) {
+    document.getElementById('partySizeValue').textContent = value;
+}
