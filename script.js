@@ -16,3 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 function updatePartySizeValue(value) {
     document.getElementById('partySizeValue').textContent = value;
 }
+
+function initMap() {
+    var venue = {lat: parseFloat(document.getElementById('venue-lat').value), lng: parseFloat(document.getElementById('venue-lng').value)};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: venue
+    });
+    new google.maps.Marker({position: venue, map: map});
+}

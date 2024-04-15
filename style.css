@@ -134,3 +134,47 @@ input[type="range"] {
     width: 100%;
     margin: 8px 0;
 }
+
+
+/* Container for the image and the map */
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.venue-image {
+    flex: 1;
+    max-width: 49%; /* Slightly less than half to accommodate margin/gap */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#map {
+    flex: 1;
+    height: 400px; /* Fixed height for the map */
+    border-radius: 8px;
+}
+
+/* Styling for venue details under the image and map */
+.venue-details {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .details-container {
+        flex-direction: column;
+    }
+
+    .venue-image, #map {
+        max-width: 100%;
+    }
+}
