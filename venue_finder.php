@@ -23,15 +23,16 @@ if (isset($_POST['findVenues'])) {
     $_SESSION['isWeekend'] = getDayOfWeek($date) == 0 || getDayOfWeek($date) == 6;
 
     // SQL query setup
-    $sql = "SELECT venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost,
-            COALESCE(AVG(venue_review_score.score)/2, 0) AS average_rating
-            FROM venue
-            JOIN catering ON venue.venue_id = catering.venue_id
-            LEFT JOIN venue_booking ON venue.venue_id = venue_booking.venue_id AND venue_booking.booking_date = ?
-            LEFT JOIN venue_review_score ON venue.venue_id = venue_review_score.venue_id
-            WHERE venue.capacity >= ? AND catering.grade = ? AND venue_booking.venue_id IS NULL
-            GROUP BY venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost
-            ORDER BY venue.capacity ASC";
+    $sql = "SELECT venue.venue_id, venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost, 
+    COALESCE(AVG(venue_review_score.score)/2, 0) AS average_rating
+    FROM venue
+    JOIN catering ON venue.venue_id = catering.venue_id
+    LEFT JOIN venue_booking ON venue.venue_id = venue_booking.venue_id AND venue_booking.booking_date = ?
+    LEFT JOIN venue_review_score ON venue.venue_id = venue_review_score.venue_id
+    WHERE venue.capacity >= ? AND catering.grade = ? AND venue_booking.venue_id IS NULL
+    GROUP BY venue.venue_id, venue.name, venue.capacity, venue.weekend_price, venue.weekday_price, catering.cost
+    ORDER BY venue.capacity ASC";
+
 
     // Prepare the SQL statement
     $stmt = $conn->prepare($sql);

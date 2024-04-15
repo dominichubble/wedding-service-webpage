@@ -49,13 +49,20 @@ include 'venue_finder.php'; // This will include the PHP script logic
                 $emptyStars = str_repeat("☆", 5 - ceil($rating));
                 $totalPrice = $row['total_price'];
 
-                echo "<div class='venue clearfix'><img src='" . htmlspecialchars($imagePath) . "' alt='Image of " . htmlspecialchars($row["name"]) . "'>" .
-                     "<div><strong>" . htmlspecialchars($row["name"]) . "</strong><br>" .
-                     "Capacity: " . htmlspecialchars($row["capacity"]) . "<br>" .
-                     "Price: £" . htmlspecialchars($_SESSION['isWeekend'] ? $row['weekend_price'] : $row['weekday_price']) . "<br>" .
-                     "Catering Cost: £" . htmlspecialchars($row["cost"]) . " per person<br>" .
-                     "Total Price: £" . htmlspecialchars($totalPrice) . "<br>" . 
-                     "Rating: " . $stars . $emptyStars . " (" . $rating . "/5)" . "</div></div>";
+                echo "<div class='venue clearfix'>";
+echo "<a href='venue_details.php?venue_id=" . $row['venue_id'] . "'>";
+echo "<img src='" . htmlspecialchars($imagePath) . "' alt='Image of " . htmlspecialchars($row["name"]) . "'>";
+
+echo "<div>";
+echo "<strong>" . htmlspecialchars($row["name"]) . "</strong><br>";
+echo "Capacity: " . htmlspecialchars($row["capacity"]) . "<br>";
+echo "Price: £" . htmlspecialchars($_SESSION['isWeekend'] ? $row['weekend_price'] : $row['weekday_price']) . "<br>";
+echo "Catering Cost: £" . htmlspecialchars($row["cost"]) . " per person<br>";
+echo "Total Price: £" . htmlspecialchars($totalPrice) . "<br>";
+echo "Rating: " . $stars . $emptyStars . " (" . $rating . "/5)";
+
+echo "</div></div></a>";
+
             }
             echo "</div>";
         } else {
