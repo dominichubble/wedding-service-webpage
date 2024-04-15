@@ -1,27 +1,27 @@
 <?php
 require_once 'db_connection.php';
 
-// Retrieve the venue ID from the URL query parameter
 $venueId = isset($_GET['venue_id']) ? (int)$_GET['venue_id'] : 0;
+if (!$venueId) {
+    exit('Invalid Venue!');
+}
 
-// Query the database for the specific venue
 $sql = "SELECT venue.*, venue_review_score.score AS average_score FROM venue 
         LEFT JOIN venue_review_score ON venue.venue_id = venue_review_score.venue_id 
         WHERE venue.venue_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $venueId);
 $stmt->execute();
-$result = $stmt->get_result();
+$venue = $stmt->get_result()->fetch_assoc();
+$stmt->close();
+$conn->close();
 
-$venueDetails = $result->fetch_assoc();
-
-// Always check if the venue details are actually retrieved
-if (!$venueDetails) {
+if (!$venue) {
     exit('Venue not found.'); // Handle this case appropriately
 }
 
-$stmt->close();
-$conn->close();
+// Replace spaces with underscores and add the .jpg extension for the image filename
+$imageFilename = strtolower(str_replace(" ", "_", $venue['name'])) . '.jpg';
 ?>
 
 <!DOCTYPE html>
@@ -29,30 +29,34 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($venueDetails['name']); ?> - Venue Details</title>
+    <title><?php echo htmlspecialchars($venue['name']); ?> - Venue Details</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYPHexyn65GlSNAZuxxYL71NO7dyF9CB0&callback=initMap&libraries=&v=weekly" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPg0GGMpyIU-6sU32eNEAWz1GqcrwVTW0&callback=initMap&v=weekly" async defer></script>
     <script>
-    function initMap() {
-        // The location of the venue
-        var venue = {lat: <?php echo $venueDetails['latitude']; ?>, lng: <?php echo $venueDetails['longitude']; ?>};
-        // The map, centered at the venue
-        var map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 15, center: venue});
-        // The marker, positioned at the venue
-        var marker = new google.maps.Marker({position: venue, map: map});
-    }
+        function initMap() {
+            var venue = {lat: <?php echo $venue['latitude']; ?>, lng: <?php echo $venue['longitude']; ?>};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: venue
+            });
+            var marker = new google.maps.Marker({position: venue, map: map});
+        }
     </script>
 </head>
 <body>
-    <header><!-- Your header content --></header>
-    <main>
-        <h1><?php echo htmlspecialchars($venueDetails['name']); ?></h1>
-        <p>Capacity: <?php echo htmlspecialchars($venueDetails['capacity']); ?></p>
-        <p>Weekend Price: £<?php echo htmlspecialchars($venueDetails['weekend_price']); ?></p>
-        <p>Weekday Price: £<?php echo htmlspecialchars($venueDetails['weekday_price']); ?></p>
-        <p>Average Score: <?php echo htmlspecialchars($venueDetails['average_score']); ?>/10</p>
-        <div id="map" style="height: 400px; width: 100%;"></div>
-    </main>
+    <header class="site-header">
+        <h1><?php echo htmlspecialchars($venue['name']); ?></h1>
+    </header>
+    <section class="venue-images">
+        <img src="<?php echo $imageFilename; ?>" alt="Main image of <?php echo htmlspecialchars($venue['name']); ?>" class="main-image">
+    </section>
+    <section class="venue-details">
+        <h2>Details</h2>
+        <p><strong>Capacity:</strong> <?php echo htmlspecialchars($venue['capacity']); ?> guests</p>
+        <p><strong>Weekend Price:</strong> £<?php echo htmlspecialchars($venue['weekend_price']); ?></p>
+        <p><strong>Weekday Price:</strong> £<?php echo htmlspecialchars($venue['weekday_price']); ?></p>
+        <p><strong>Average Rating:</strong> <?php echo htmlspecialchars($venue['average_score']); ?> / 10</p>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+    </section>
 </body>
 </html>
