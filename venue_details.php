@@ -30,7 +30,8 @@ $imageFilename = strtolower(str_replace(" ", "_", $venue['name'])) . '.jpg';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($venue['name']); ?> - Venue Details</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPg0GGMpyIU-6sU32eNEAWz1GqcrwVTW0&callback=initMap&v=weekly" async defer></script>
     <script src="script.js" defer></script>
 </head>
