@@ -1,0 +1,111 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black for better visibility */
+    color: white;
+    padding: 10px 20px; /* Added horizontal padding */
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.site-name {
+    font-size: 24px;
+    margin-right: 30px; /* Space between site name and nav items */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Aligns items in a row */
+    margin: 0; /* Reset margin for alignment */
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.background-image {
+    background-image: url('ashby_castle.jpg'); /* Update with your image path */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.center-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.btn {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #003580;
+}
+
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-direction: column;
+    }
+
+    .site-name {
+        margin-bottom: 15px; /* Adds space between title and nav items on small screens */
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Stack nav items vertically */
+    }
+
+    .navbar ul li {
+        text-align: center; /* Center-align the items */
+    }
+}
+
+
+/* ---------------------------- */
+
+form{
+    width: 100%;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+

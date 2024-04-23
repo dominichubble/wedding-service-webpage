@@ -11,17 +11,55 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
     });
+
+    // Map initialization code here
+    var maps = document.querySelectorAll('.map');
+    maps.forEach(function(mapElement) {
+        var venueId = mapElement.id.split('-')[1];
+        var lat = parseFloat(document.getElementById('lat-' + venueId).value);
+        var lng = parseFloat(document.getElementById('lng-' + venueId).value);
+
+        var map = new google.maps.Map(mapElement, {
+            zoom: 15,
+            center: {lat: lat, lng: lng}
+        });
+
+        new google.maps.Marker({
+            position: {lat: lat, lng: lng},
+            map: map
+        });
+    });
 });
+
 
 function updatePartySizeValue(value) {
     document.getElementById('partySizeValue').textContent = value;
 }
 
+
 function initMap() {
-    var venue = {lat: parseFloat(document.getElementById('venue-lat').value), lng: parseFloat(document.getElementById('venue-lng').value)};
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: venue
+    document.querySelectorAll('.map').forEach(function(mapElement) {
+        var venueId = mapElement.id.split('-')[1];
+        var latElement = document.getElementById('lat-' + venueId);
+        var lngElement = document.getElementById('lng-' + venueId);
+
+        if (!latElement || !lngElement) {
+            console.error('Latitude or longitude element not found for venue:', venueId);
+            return; // Skip this map initialization
+        }
+
+        var lat = parseFloat(latElement.value);
+        var lng = parseFloat(lngElement.value);
+
+        var map = new google.maps.Map(mapElement, {
+            zoom: 15,
+            center: {lat: lat, lng: lng}
+        });
+
+        new google.maps.Marker({
+            position: {lat: lat, lng: lng},
+            map: map
+        });
     });
-    new google.maps.Marker({position: venue, map: map});
 }
+
