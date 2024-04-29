@@ -1,6 +1,8 @@
 <?php
 include 'fetch_venue_data.php'; // This will include the PHP script logic
+include 'bookings.php'; // This will include the PHP script logic
 $venues = json_decode($jsonData, true);
+$bookings = json_decode($jsonBookingData, true);
 ?>
 
 <!DOCTYPE html>
