@@ -60,7 +60,12 @@ $venues = json_decode($jsonData, true);
                 $emptyStars = str_repeat("☆", 5 - ceil($rating));
         ?>
                 <div class="venue">
+                <div class="venue-media">
                     <img src="<?php echo $imageName; ?>" alt="<?php echo htmlspecialchars($venue['name']); ?>">
+                    <div id="map-<?php echo $venue['venue_id']; ?>" class="map"></div>
+                </div>
+                    <input type="hidden" id="lat-<?php echo $venue['venue_id']; ?>" value="<?php echo $venue['latitude']; ?>">
+                    <input type="hidden" id="lng-<?php echo $venue['venue_id']; ?>" value="<?php echo $venue['longitude']; ?>">
                     <h2><?php echo htmlspecialchars($venue['name']); ?></h2>
                     <p>Capacity: <?php echo htmlspecialchars($venue['capacity']); ?></p>
                     <p>Weekend Price: £<?php echo htmlspecialchars($venue['weekend_price']); ?></p>
@@ -68,9 +73,7 @@ $venues = json_decode($jsonData, true);
                     <p>Rating: <?php echo $stars . $emptyStars; ?> (<?php echo $rating; ?>/5)</p>
                     <p>Latitude: <?php echo htmlspecialchars($venue['latitude']); ?></p>
                     <p>Longitude: <?php echo htmlspecialchars($venue['longitude']); ?></p>
-                    <div id="map-<?php echo $venue['venue_id']; ?>" class="map" style="width: 100%; height: 300px;"></div>
-                    <input type="hidden" id="lat-<?php echo $venue['venue_id']; ?>" value="<?php echo $venue['latitude']; ?>">
-                    <input type="hidden" id="lng-<?php echo $venue['venue_id']; ?>" value="<?php echo $venue['longitude']; ?>">
+                    
 
                 </div>
         <?php endif;
