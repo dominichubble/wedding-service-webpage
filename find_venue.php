@@ -2,7 +2,34 @@
 include 'fetch_venue_data.php'; // This will include the PHP script logic
 include 'bookings.php'; // This will include the PHP script logic
 $venues = json_decode($jsonData, true);
+echo "<script>console.log($jsonData);</script>";
+$filtered_venues = null;
 $bookings = json_decode($jsonBookingData, true);
+echo "<script>console.log($jsonBookingData);</script>";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $date = $_POST['date'];
+    $partySize = (int)$_POST['partySize'];
+    $cateringGrade = (int)$_POST['cateringGrade'];
+
+    foreach ($venues as $venue) {
+        $isBooked = false;
+
+        // Check bookings for each venue
+        foreach ($venue['bookings'] as $booking) {
+            if ($booking['booking_date'] === $date) {
+                $isBooked = true;
+                break;  // No need to check further, venue is booked on this date
+            }
+        }
+
+        // Check if the venue is not booked, has enough capacity, and matches the catering grade
+        if (!$isBooked && $venue['capacity'] >= $partySize && $venue['grade'] == $cateringGrade) {
+            $filtered_venues[] = $venue;
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +57,7 @@ $bookings = json_decode($jsonBookingData, true);
     </nav>
 
 
-    <form method="post" action="find_venue.php">
+    <form method="POST" action="find_venue.php">
         <label for="date">Wedding Date:</label>
         <input type="date" id="date" name="date" required>
 
@@ -53,7 +80,7 @@ $bookings = json_decode($jsonBookingData, true);
     <div id="venues-container">
         <?php
         $displayed_venues = []; // Array to keep track of displayed venues
-        foreach ($venues as $venue) :
+        foreach ($filtered_venues as $venue) :
             if (!in_array($venue['venue_id'], $displayed_venues)) : // Check if the venue_id has already been displayed
                 $displayed_venues[] = $venue['venue_id']; // Mark this venue_id as displayed
                 $imageName = strtolower(str_replace(" ", "_", $venue["name"])) . ".jpg";
