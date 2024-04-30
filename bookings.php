@@ -7,13 +7,13 @@ $sql = "SELECT *
 
 $result = $conn->query($sql);
 
-$venues = [];
+$bookings = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $venues[] = $row;
+        $bookings[] = $row;
     }
     // Encode the results into JSON
-    $jsonBookingData = json_encode($venues, JSON_PRETTY_PRINT);
+    $jsonBookingData = json_encode($bookings, JSON_PRETTY_PRINT);
 }
 
 $conn->close();
