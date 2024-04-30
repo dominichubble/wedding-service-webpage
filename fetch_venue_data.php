@@ -1,5 +1,5 @@
 <?php
-require 'db_connection.php';  // Ensure this file sets up a connection to your database
+require 'database_connection.php';  // Ensure this file sets up a connection to your database
 
 // SQL query that joins the venue, catering, and venue_review_score tables
 $sql = "SELECT v.venue_id, v.name, v.capacity, v.weekend_price, v.weekday_price, v.latitude, v.longitude,
