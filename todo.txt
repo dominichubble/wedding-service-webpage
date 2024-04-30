@@ -18,4 +18,3 @@ Use of “AJAX requests or Fetch API” for enhanced interactivity and asynchron
 
 Use of JSON for data transfer (5%)
 
-search works for party size but not the others

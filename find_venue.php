@@ -7,7 +7,14 @@ $filtered_venues = null;
 $bookings = json_decode($jsonBookingData, true);
 echo "<script>console.log($jsonBookingData);</script>";
 
+$start = 0;
+if ($start == 0) {
+    $filtered_venues = $venues;
+    $start = 1;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $filtered_venues = [];
     $date = $_POST['date'];
     $partySize = (int)$_POST['partySize'];
     $cateringGrade = (int)$_POST['cateringGrade'];
