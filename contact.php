@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Vows & Venues</title>
+    <title>About Us | Vows & Venues</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,11 +18,6 @@
             </ul>
         </div>
     </nav>
-    <div class="background-image"></div>
-    <div class="center-content">
-        <h1>Welcome to Vows and Venues</h1>
-        <p>Find the perfect venue for your special day.</p>
-        <a href="find_venue.php" class="btn">Find a Venue</a>
-    </div>
+    
 </body>
 </html>

@@ -1,7 +1,7 @@
 Basic design and functionality (40%)
 o Implementation of filtering based on key criteria (date, party size, and catering grade) (6%) /
 o Display correct venue names with their details (8%) /
-o Display correct booking prices and detailed catering costs as well as the total expenses (8%) 
+o Display correct booking prices and detailed catering costs as well as the total expenses (8%) /
 o Use of validation and error handling (5%) /
 o User-friendly design by incorporating CSS, JavaScript, and contextually relevant images (13%) /
 
