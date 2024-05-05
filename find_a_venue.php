@@ -55,23 +55,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="style.css">
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPg0GGMpyIU-6sU32eNEAWz1GqcrwVTW0&callback=initMap&v=weekly"></script>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="navbar-content">
-            <span class="site-name">Vows & Venues</span>
-            <ul>
-                <li><a href="wedding.php">Home</a></li>
-                <li><a href="find_a_venue.php">Find a Venue</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <img src="logo.png" alt="Vows & Venues Logo" class="logo">
+        <nav>
+            <div class="nav_links">
+                <ul>
+                    <li><a href="wedding.php">Home</a></li>
+                    <li><a href="find_a_venue.php">Find a Venue</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        <a class="cta" href="contact.php"><button>Contact</button></a>
+    </header>
     <h1>Available Venues</h1>
 
-    <form method="POST" action="find_venue.php">
+    <form method="POST" action="find_a_venue.php">
         <label for="date">Wedding Date:</label>
         <input type="date" id="date" name="date" required>
 

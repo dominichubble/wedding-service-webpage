@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Vows & Venues</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="logo.ico">
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="navbar-content">
-            <span class="site-name">Vows & Venues</span>
-            <ul>
-                <li><a href="wedding.php">Home</a></li>
-                <li><a href="find_a_venue.php">Find a Venue</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <img src="logo.png" alt="Vows & Venues Logo" class="logo">
+        <nav>
+            <div class="nav_links">
+                <ul>
+                    <li><a href="wedding.php">Home</a></li>
+                    <li><a href="find_a_venue.php">Find a Venue</a></li>
+                    <li><a href="about.php">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        <a class="cta" href="contact.php"><button>Contact</button></a>
+    </header>
     <div class="contact-container">
         <h1>Contact Us</h1>
         <form id="contactForm">
