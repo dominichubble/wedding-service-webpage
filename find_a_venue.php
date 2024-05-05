@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
         </div>
     </nav>
-
+    <h1>Available Venues</h1>
 
     <form method="POST" action="find_venue.php">
         <label for="date">Wedding Date:</label>
@@ -90,15 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit" name="submit">Search Venues</button>
     </form>
-
-    <h1>Available Venues</h1>
     <div id="venues-container">
         <?php
         $displayed_venues = []; // Array to keep track of displayed venues
         foreach ($filtered_venues as $venue):
             if (!in_array($venue['venue_id'], $displayed_venues)): // Check if the venue_id has already been displayed
                 $displayed_venues[] = $venue['venue_id']; // Mark this venue_id as displayed
-                $imageName = strtolower("-".str_replace(" ", "_", $venue["name"])) . ".jpg";
+                $imageName = strtolower("-" . str_replace(" ", "_", $venue["name"])) . ".jpg";
                 $rating = round($venue["average_score"], 0);
                 $stars = str_repeat("★", floor($rating));
                 $emptyStars = str_repeat("☆", 5 - ceil($rating));
@@ -155,9 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         endforeach;
         ?>
     </div>
-
     <script src="script.js"></script>
-
 </body>
 
 </html>

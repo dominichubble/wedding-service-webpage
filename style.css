@@ -1,3 +1,10 @@
+:root {
+    --primary-color: #0056b3;  /* Blue, for primary actions and headings */
+    --secondary-color: #f4f4f4;  /* Light grey, for backgrounds */
+    --accent-color: #ffc107;  /* Amber, for call-to-action elements */
+    --text-color: #333;  /* Dark grey, for primary text */
+}
+
 body, html {
     height: 100%;
     margin: 0;

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('fetch_venue_booking.php')
+    fetch('venue_bookings_graph.php')
     .then(response => response.json())
     .then(data => {
         const bookingCounts = countBookingsPerMonth(data);
