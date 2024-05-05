@@ -5,7 +5,7 @@ $venues = json_decode($jsonData, true);
 echo "<script>console.log($jsonData);</script>";
 $filtered_venues = null;
 $bookings = json_decode($jsonBookingData, true);
-//echo "<script>console.log($jsonBookingData);</script>";
+echo "<script>console.log($jsonBookingData);</script>";
 
 $start = 0;
 if ($start == 0) {
@@ -156,15 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
     </div>
 
-
-
-
-
     <script src="script.js"></script>
-
-
-
-
 
 </body>
 
