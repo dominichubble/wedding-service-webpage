@@ -108,23 +108,13 @@ button:hover {
 .text-overlay h1 {
   font-size: 1.5em; /* Smaller for compact design */
   margin-bottom: 0.5em; /* Space between the h1 and p */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0
-  );
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .text-overlay p {
   font-size: 1em; /* Adequate size for visibility without taking much space */
   margin-bottom: 1em; /* Space before the button */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0
-  );
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .text-overlay button {
@@ -138,7 +128,7 @@ section {
   overflow: hidden; /* Ensures no content spills out, keeping the rounded corners clean */
 }
 
-h1{
+h1 {
   font-size: 2em; /* Large heading for emphasis */
   margin: 40px; /* Space between the heading and the content */
 }
@@ -146,10 +136,10 @@ h1{
 /* Container that holds all venues */
 #venues-container {
   display: flex;
-  flex-wrap: wrap; /* Allows items to wrap onto the next line */
-  justify-content: space-around; /* Evenly spaces venue items, adding space around them */
-  align-items: flex-start; /* Aligns items at the top */
-  margin: 20px; /* Adds some space around the entire container */
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 20px;
 }
 
 /* Individual venue styling */
@@ -158,69 +148,91 @@ h1{
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin: 20px; /* Adjust margins for better spacing between venues */
+  margin: 20px;
   border: 2px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  width: calc(50% - 40px); /* Adjust width to fit two items per row, accounting for margin */
-  box-sizing: border-box; /* Includes padding and border in the width */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: calc(50% - 40px);
+  box-sizing: border-box;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
   #venues-container {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
-
   .venue {
-      width: 90%; /* Full width on smaller screens */
+    width: 90%;
+    flex-direction: column;
+  }
+  .venue-media {
+    flex-direction: column;
+  }
+  .venue img,
+  .venue .map {
+    width: 100%; /* Full width to fill the container */
+    margin-bottom: 10px; /* Adds space between stacked elements */
+  }
+  .venue-details {
+    flex-direction: column; /* Stacks the children vertically on smaller screens */
+  }
+  .venue-details-left,
+  .venue-details-right {
+    flex: none; /* Removes the flex grow and shrink abilities */
+    width: 100%; /* Each child will take full width of the container */
   }
 }
+
 /* Container for image and map */
 .venue-media {
   display: flex;
-  width: 100%; /* Takes full width of the venue container */
-  justify-content: space-between; /* Spaces image and map apart */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-/* Venue image styling */
-.venue img {
-  width: 50%; /* Takes half of the venue-media container */
-  height: auto; /* Keeps aspect ratio intact */
-  max-width: 100%; /* Ensures it doesn't exceed its container */
-  margin-right: 10px; /* Space between image and map */
-}
-
-/* Map styling */
+/* Venue image styling with aspect ratio */
+.venue img,
 .venue .map {
-  width: 50%; /* Takes the other half of the venue-media container */
-  height: 200px; /* Smaller height for better layout */
+  flex: 1 1 50%; /* Each takes up half the space of the container */
+  max-width: 47%; /* Ensures the image doesn't exceed the container */
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.venue-details {
+  display: flex;
+  justify-content: space-between; /* Positions the children at the start and end of the container */
+  align-items: start; /* Align items at the start of the cross axis */
+  width: 100%; /* Takes full width to accommodate child elements */
+  margin-top: 20px; /* Adds space above the details section */
+}
+
+.venue-details-left,
+.venue-details-right {
+  flex: 1; /* Each child will take up equal space */
+  padding: 10px; /* Adds padding inside the left and right details areas */
 }
 
 /* Venue Title */
 .venue h2 {
-  color: rgba(0, 136, 169, 1); /* A deep blue, commonly used for titles */
-  margin-bottom: 10px;
-  margin-top: 10px;
+  color: rgba(0, 136, 169, 1);
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: center;
 }
 
 /* Venue Details */
 .venue p {
-  font-size: 14px; /* Legible font size for details */
-  line-height: 1.5; /* Adequate line spacing for readability */
-  text-align: center; /* Center align text */
-  margin-bottom: 5px; /* Space between paragraphs */
-}
-
-/* Map styling */
-.venue .map {
-  width: 400px; /* Square dimensions */
-  height: 400px; /* Square dimensions */
-  background-color: #e0e0e0; /* Placeholder in case map fails to load */
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 .venue-booking {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -260,7 +272,6 @@ h1{
   height: 150px; /* Adjust height as needed */
   /* Ensures the textarea expands to fit the content */
   resize: vertical;
-
 }
 
 .contact-form button {
@@ -295,6 +306,10 @@ h1{
   color: #333;
 }
 
+#partySizeValue {
+  color: #333;
+}
+
 /* Styles for input fields and select elements */
 .venue-filters input[type="date"],
 .venue-filters input[type="range"],
@@ -304,6 +319,7 @@ h1{
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f8f8f8;
+  color: #333;
 }
 
 /* Style for range input with live update display */
@@ -320,7 +336,7 @@ h1{
   appearance: none;
   width: 20px;
   height: 20px;
-  background: #007BFF;
+  background: #007bff;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -328,7 +344,7 @@ h1{
 .venue-filters input[type="range"]::-moz-range-thumb {
   width: 20px;
   height: 20px;
-  background: #007BFF;
+  background: #007bff;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -348,13 +364,17 @@ h1{
   background-color: #003974;
 }
 
+#cateringGrade option {
+  color: #333; /* Dark gray color for dropdown text */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .venue-filters {
-      padding: 10px;
+    padding: 10px;
   }
 
   .venue-filters form {
-      gap: 10px;
+    gap: 10px;
   }
 }

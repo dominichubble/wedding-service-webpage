@@ -75,91 +75,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Available Venues</h1>
     <section>
         <div class="venue-filters">
-    <form method="POST" action="find_a_venue.php">
-        <label for="date">Wedding Date:</label>
-        <input type="date" id="date" name="date" required>
+            <form method="POST" action="find_a_venue.php">
+                <label for="date">Wedding Date:</label>
+                <input type="date" id="date" name="date" required>
 
-        <label for="partySize">Party Size: <span id="partySizeValue">50</span></label>
-        <input type="range" id="partySize" name="partySize" min="50" max="200" value="1000"
-            oninput="updatePartySizeValue(this.value)" required>
+                <label for="partySize">Party Size: <span id="partySizeValue">50</span></label>
+                <input type="range" id="partySize" name="partySize" min="50" max="1000" value="200"
+                    oninput="updatePartySizeValue(this.value)" required>
 
-        <label for="cateringGrade">Catering Grade:</label>
-        <select id="cateringGrade" name="cateringGrade">
-            <option value="1">Basic</option>
-            <option value="2">Standard</option>
-            <option value="3">Good</option>
-            <option value="4">Superior</option>
-            <option value="5">Luxury</option>
-        </select>
+                <label for="cateringGrade">Catering Grade:</label>
+                <select id="cateringGrade" name="cateringGrade">
+                    <option value="1">Basic</option>
+                    <option value="2">Standard</option>
+                    <option value="3">Good</option>
+                    <option value="4">Superior</option>
+                    <option value="5">Luxury</option>
+                </select>
 
-        <button type="submit" name="submit">Search Venues</button>
-    </form>
-    </div>
+                <button type="submit" name="submit">Search Venues</button>
+            </form>
+        </div>
     </section>
     <section>
-    <div id="venues-container">
-        <?php
-        $displayed_venues = []; // Array to keep track of displayed venues
-        foreach ($filtered_venues as $venue):
-            if (!in_array($venue['venue_id'], $displayed_venues)): // Check if the venue_id has already been displayed
-                $displayed_venues[] = $venue['venue_id']; // Mark this venue_id as displayed
-                $imageName = strtolower("-" . str_replace(" ", "_", $venue["name"])) . ".jpg";
-                $rating = round($venue["average_score"], 0);
-                $stars = str_repeat("★", floor($rating));
-                $emptyStars = str_repeat("☆", 5 - ceil($rating));
-                ?>
-                <div class="venue">
-                    <div class="venue-media">
-                        <img src="<?php echo $imageName; ?>" alt="<?php echo htmlspecialchars($venue['name']); ?>">
-                        <div id="map-<?php echo $venue['venue_id']; ?>" class="map"></div>
-                    </div>
-                    <div class="venue-details">
-                        <input type="hidden" id="lat-<?php echo $venue['venue_id']; ?>"
-                            value="<?php echo $venue['latitude']; ?>">
-                        <input type="hidden" id="lng-<?php echo $venue['venue_id']; ?>"
-                            value="<?php echo $venue['longitude']; ?>">
-                        <h2><?php echo htmlspecialchars($venue['name']); ?></h2>
-                        <p>Capacity: <?php echo htmlspecialchars($venue['capacity']); ?></p>
-                        <p>Weekend Price: £<?php echo htmlspecialchars($venue['weekend_price']); ?></p>
-                        <p>Weekday Price: £<?php echo htmlspecialchars($venue['weekday_price']); ?></p>
-                        <p>Cost Per Person: £<?php echo htmlspecialchars($venue['cost']); ?></p>
-                        <p>Rating: <?php echo $stars . $emptyStars; ?> (<?php echo $rating; ?>/5)</p>
-
-                        <div class="venue-details-entered">
-                            <p>Wedding Date: <?php echo htmlspecialchars($_POST['date']); ?></p>
-                            <p>Party Size: <?php echo htmlspecialchars($_POST['partySize']); ?></p>
-                            <p>Catering Grade: <?php echo htmlspecialchars($_POST['cateringGrade']); ?></p>
-
-                            <?php
-                            $isWeekend = false;
-                            $date = $_POST['date'];
-                            $dayOfWeek = date('N', strtotime($date));
-                            if ($dayOfWeek >= 6) {  // 6 and 7 correspond to Saturday and Sunday
-                                $isWeekend = true;
-                            } else {
-                                $isWeekend = false;
-                            }
-                            //echo "<script>console.log('"."is weekend: ".$isWeekend."');</script>";
-                    
-                            if ($isWeekend) {
-                                $totalCost = $venue['weekend_price'] + $venue['cost'] * $_POST['partySize'];
-                            } else {
-                                $totalCost = $venue['weekday_price'] + $venue['cost'] * $_POST['partySize'];
-                            }
-                            ?>
-                            <p>Catering Cost: £<?php echo htmlspecialchars($venue['cost'] * $_POST['partySize']); ?></p>
-                            <p>Venue Cost: £<?php echo $isWeekend ? $venue['weekend_price'] : $venue['weekday_price']; ?></p>
-                            <p>Total Cost: £<?php echo $totalCost ?></p>
+        <div id="venues-container">
+            <?php
+            $displayed_venues = []; // Array to keep track of displayed venues
+            foreach ($filtered_venues as $venue):
+                if (!in_array($venue['venue_id'], $displayed_venues)): // Check if the venue_id has already been displayed
+                    $displayed_venues[] = $venue['venue_id']; // Mark this venue_id as displayed
+                    $imageName = strtolower("-" . str_replace(" ", "_", $venue["name"])) . ".jpg";
+                    $rating = round($venue["average_score"], 0);
+                    $stars = str_repeat("★", floor($rating));
+                    $emptyStars = str_repeat("☆", 5 - ceil($rating));
+                    ?>
+                    <div class="venue">
+                        <div class="venue-media">
+                            <img src="<?php echo $imageName; ?>" alt="<?php echo htmlspecialchars($venue['name']); ?>">
+                            <div id="map-<?php echo $venue['venue_id']; ?>" class="map"></div>
                         </div>
+                        <h2><?php echo htmlspecialchars($venue['name']); ?></h2>
+                        <div class="venue-details">
+
+                            <div class="venue-details-left">
+                                <input type="hidden" id="lat-<?php echo $venue['venue_id']; ?>"
+                                    value="<?php echo $venue['latitude']; ?>">
+                                <input type="hidden" id="lng-<?php echo $venue['venue_id']; ?>"
+                                    value="<?php echo $venue['longitude']; ?>">
+
+                                <p>Capacity: <?php echo htmlspecialchars($venue['capacity']); ?></p>
+                                <p>Weekend Price: £<?php echo htmlspecialchars($venue['weekend_price']); ?></p>
+                                <p>Weekday Price: £<?php echo htmlspecialchars($venue['weekday_price']); ?></p>
+                                <p>Cost Per Person: £<?php echo htmlspecialchars($venue['cost']); ?></p>
+                                <p>Rating: <?php echo $stars . $emptyStars; ?> (<?php echo $rating; ?>/5)</p>
+                            </div>
+                            <div class="venue-details-right">
+                                <p>Party Size: <?php echo htmlspecialchars($_POST['partySize']); ?></p>
+                                <p>Wedding Date: <?php echo htmlspecialchars($_POST['date']); ?></p>
+
+
+                                <p>Catering Grade: <?php echo htmlspecialchars($_POST['cateringGrade']); ?></p>
+
+                                <?php
+                                $isWeekend = false;
+                                $date = $_POST['date'];
+                                $dayOfWeek = date('N', strtotime($date));
+                                if ($dayOfWeek >= 6) {  // 6 and 7 correspond to Saturday and Sunday
+                                    $isWeekend = true;
+                                } else {
+                                    $isWeekend = false;
+                                }
+                                //echo "<script>console.log('"."is weekend: ".$isWeekend."');</script>";
+                        
+                                if ($isWeekend) {
+                                    $totalCost = $venue['weekend_price'] + $venue['cost'] * $_POST['partySize'];
+                                } else {
+                                    $totalCost = $venue['weekday_price'] + $venue['cost'] * $_POST['partySize'];
+                                }
+                                ?>
+                                <p>Catering Cost: £<?php echo htmlspecialchars($venue['cost'] * $_POST['partySize']); ?></p>
+                                <p>Venue Cost: £<?php echo $isWeekend ? $venue['weekend_price'] : $venue['weekday_price']; ?>
+                                </p>
+
+                            </div>
+
+                        </div>
+                        <p><b>Total Cost: £<?php echo $totalCost ?></b></p>
                         <div class="venue-booking">
                             <button type="submit" name="submit">Book Venue</button>
                         </div>
                     </div>
-                </div>
-            <?php endif;
-        endforeach;
-        ?>
-    </div>
+                <?php endif;
+            endforeach;
+            ?>
+        </div>
     </section>
     <script src="script.js"></script>
 </body>
