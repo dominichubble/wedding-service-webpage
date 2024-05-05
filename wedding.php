@@ -22,7 +22,7 @@
     <div class="center-content">
         <h1>Welcome to Vows and Venues</h1>
         <p>Find the perfect venue for your special day.</p>
-        <a href="find_venue.php" class="btn">Find a Venue</a>
+        <a href="find_a_venue.php" class="btn">Find a Venue</a>
     </div>
 </body>
 </html>

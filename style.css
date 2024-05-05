@@ -43,7 +43,7 @@ body, html {
 }
 
 .background-image {
-    background-image: url('ashby_castle.jpg'); /* Update with your image path */
+    background-image: url('-ashby_castle.jpg'); /* Update with your image path */
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -171,3 +171,81 @@ form{
     }
 }
 
+/* ---------------------------- */
+
+/* Base styling for the contact form container */
+.contact-container {
+    max-width: 600px;
+    margin: 70px auto;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Styling for form headings */
+.contact-container h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+/* Style adjustments for labels */
+.contact-container label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 16px;
+    color: #444;
+}
+
+/* Unified styling for text inputs and textarea */
+.contact-container input[type="text"],
+.contact-container input[type="email"],
+.contact-container textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Makes sure padding does not affect width */
+    margin-bottom: 20px;
+}
+
+/* Specific styling for textarea to handle message input */
+.contact-container textarea {
+    height: 75px;
+    resize: vertical; /* Allows the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Styling for the submit button */
+.contact-container button {
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Feedback message styling */
+#formFeedback {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 20px;
+        margin: 20px;
+    }
+}
