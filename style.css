@@ -143,29 +143,59 @@ h1{
   margin: 40px; /* Space between the heading and the content */
 }
 
+/* Container that holds all venues */
+#venues-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line */
+  justify-content: space-around; /* Evenly spaces venue items, adding space around them */
+  align-items: flex-start; /* Aligns items at the top */
+  margin: 20px; /* Adds some space around the entire container */
+}
+
+/* Individual venue styling */
 .venue {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin: 40px 400px;
+  margin: 20px; /* Adjust margins for better spacing between venues */
   border: 2px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: calc(50% - 40px); /* Adjust width to fit two items per row, accounting for margin */
+  box-sizing: border-box; /* Includes padding and border in the width */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  #venues-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .venue {
+      width: 90%; /* Full width on smaller screens */
+  }
 }
 /* Container for image and map */
 .venue-media {
   display: flex;
-  align-items: center;
-  justify-content: start;
+  width: 100%; /* Takes full width of the venue container */
+  justify-content: space-between; /* Spaces image and map apart */
 }
 
 /* Venue image styling */
 .venue img {
-  width: auto;  /* Adjust based on layout */
-  height: 400px; /* Match map height for alignment */
-  max-width: 100%; /* Ensure it is responsive */
+  width: 50%; /* Takes half of the venue-media container */
+  height: auto; /* Keeps aspect ratio intact */
+  max-width: 100%; /* Ensures it doesn't exceed its container */
   margin-right: 10px; /* Space between image and map */
+}
+
+/* Map styling */
+.venue .map {
+  width: 50%; /* Takes the other half of the venue-media container */
+  height: 200px; /* Smaller height for better layout */
 }
 
 /* Venue Title */
