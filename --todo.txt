@@ -8,13 +8,13 @@ o User-friendly design by incorporating CSS, JavaScript, and contextually releva
 
 Advanced design, features, and implementation (45%)
 o Demonstration of creativity in design choices to make the user experience visually appealing (10%) /
-o Utilising statistics, visuals, charts, and comparative elements for insightful presentation (15%)
-o Implementation of additional features and functionalities (beyond the basic requirements)
-that enhance the user's understanding and decision-making with meaningful insights (20%)
+o Utilising statistics, visuals, charts, and comparative elements for insightful presentation (15%) /
+o Implementation of additional features and functionalities (beyond the basic requirements) 
+that enhance the user's understanding and decision-making with meaningful insights (20%)/
 
 
-Use of “AJAX requests or Fetch API” for enhanced interactivity and asynchronous webpage updates (10%)
+Use of “AJAX requests or Fetch API” for enhanced interactivity and asynchronous webpage updates (10%) / 
 
 
-Use of JSON for data transfer (5%)
+Use of JSON for data transfer (5%) /
 
