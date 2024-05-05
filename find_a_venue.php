@@ -170,6 +170,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </section>
     <script src="script.js"></script>
+    <footer>
+        <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

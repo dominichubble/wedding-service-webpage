@@ -31,6 +31,9 @@
             <a href="find_a_venue.php"><button>Find a Venue</button></a>
         </div>
     </div>
+    <footer>
+        <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

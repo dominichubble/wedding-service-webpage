@@ -378,3 +378,72 @@ h1 {
     gap: 10px;
   }
 }
+
+.about-section {
+  margin: 40px;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  flex-basis: 30%; /* Adjust based on the number of team members per row */
+  text-align: center;
+  margin: 20px;
+}
+
+.team-member img {
+  width: 100%;
+  max-width: 200px; /* Limits the image size */
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+#booking-graph {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1000px; /* Limits the width of the section for better graph visibility */
+  background-color: #333; /* White background to make the graph stand out */
+  border: 1px solid #ddd; /* Subtle border for the container */
+  border-radius: 10px; /* Rounded corners for a softer look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+#booking-graph h2 {
+  text-align: center; /* Centers the title of the graph */
+  color: white; /* Dark grey color for better readability */
+  padding-bottom: 10px; /* Space below the title */
+}
+
+canvas#bookingChart {
+  width: 100% !important; /* Ensures the canvas takes full width of the container */
+  height: auto !important; /* Auto height for maintaining aspect ratio */
+}
+
+@media (max-width: 768px) {
+  #booking-graph {
+      width: 95%; /* Allows the section to fill more of the screen on smaller devices */
+      padding: 10px;
+  }
+
+  canvas#bookingChart {
+      max-width: 100%; /* Ensures the canvas does not overflow on smaller screens */
+      height: 400px; /* Fixed height to ensure the graph is visible */
+  }
+}
+
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #24252a;
+  color: white;
+}

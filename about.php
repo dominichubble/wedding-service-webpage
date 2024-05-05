@@ -23,14 +23,32 @@
         </nav>
         <a class="cta" href="contact.php"><button>Contact</button></a>
     </header>
-    <h1>About Us</h1>
-    <section>
-        <p>Welcome to Vows & Venues, your ultimate destination for booking the perfect venue for your wedding day.
-            Founded in 2024, we specialize in helping couples find and book venues that match their vision, budget, and
-            requirements, ensuring a seamless and memorable experience.</p>
-        <p>Our service offers personalized consultations, a wide range of venue options, and exclusive deals that make
-            your special day as enchanting as possible.</p>
-    </section>
+    <h1>About Vows & Venues</h1>
+    <main>
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>We strive to provide the best wedding venue options...</p>
+        </div>
+        <div class="about-section">
+            <h2>What We Do</h2>
+            <p>Explore our curated lists of venues...</p>
+        </div>
+        <div class="about-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="-ashby_castle.jpg" alt="Team Member 1">
+                    <p>Name: Dominic Hubble</p>
+                    <p>Role: Front-End Developer</p>
+                </div>
+                <div class="team-member">
+                    <img src="-ashby_castle.jpg" alt="Team Member 2">
+                    <p>Name: Dominic Hubble</p>
+                    <p>Role: Back-End Developer</p>
+                </div>
+            </div>
+        </div>
+    </main>
     <section id="booking-graph">
         <h2>Venue Booking Trends</h2>
         <canvas id="bookingChart"></canvas>
@@ -38,7 +56,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="about.js"></script>
 
-
+    <footer>
+        <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

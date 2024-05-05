@@ -45,6 +45,9 @@
         </div>
     </section>
     <script src="contact.js"></script> <!-- Link to your JavaScript file -->
+    <footer>
+        <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

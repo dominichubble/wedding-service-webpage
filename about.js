@@ -34,18 +34,29 @@ function createChart(labels, data) {
                 label: 'Bookings per Month',
                 data: data,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                borderColor: '#fff',
                 borderWidth: 1
             }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#fff'  // Sets the y-axis tick color to white
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#fff'  // Sets the x-axis tick color to white
+                    }
                 }
             },
             plugins: {
                 legend: {
+                    labels: {
+                        color: '#fff'  // Optional: Sets the legend text color to white
+                    },
                     display: true,
                     position: 'top'
                 }
@@ -53,3 +64,4 @@ function createChart(labels, data) {
         }
     });
 }
+
