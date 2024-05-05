@@ -4,9 +4,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #24252a;
   font-family: "Montserrat", sans-serif;
   color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #24252a;
 }
 
 li,
@@ -125,4 +130,68 @@ button:hover {
 .text-overlay button {
   padding: 10px 15px; /* Sufficiently clickable but not too large */
   font-size: 0.9em; /* Smaller font size for the button */
+}
+
+section {
+  padding: 40px 20px; /* Ample padding for readability and spacing */
+  margin: 20px; /* Space between sections */
+  overflow: hidden; /* Ensures no content spills out, keeping the rounded corners clean */
+}
+
+h1{
+  font-size: 2em; /* Large heading for emphasis */
+  margin: 40px; /* Space between the heading and the content */
+}
+
+.venue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20%;
+  margin: 40px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+/* Container for image and map */
+.venue-media {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+/* Venue image styling */
+.venue img {
+  width: auto;  /* Adjust based on layout */
+  height: 400px; /* Match map height for alignment */
+  max-width: 100%; /* Ensure it is responsive */
+  margin-right: 10px; /* Space between image and map */
+}
+
+/* Venue Title */
+.venue h2 {
+  color: rgba(0, 136, 169, 1); /* A deep blue, commonly used for titles */
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* Venue Details */
+.venue p {
+  font-size: 14px; /* Legible font size for details */
+  line-height: 1.5; /* Adequate line spacing for readability */
+  text-align: center; /* Center align text */
+  margin-bottom: 5px; /* Space between paragraphs */
+}
+
+/* Map styling */
+.venue .map {
+  width: 400px; /* Square dimensions */
+  height: 400px; /* Square dimensions */
+  background-color: #e0e0e0; /* Placeholder in case map fails to load */
+}
+
+.venue-booking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

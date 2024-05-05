@@ -23,8 +23,9 @@
         </nav>
         <a class="cta" href="contact.php"><button>Contact</button></a>
     </header>
-    <div class="contact-container">
-        <h1>Contact Us</h1>
+    <h1>Contact Us</h1>
+    <section>
+        <p>Have a question or feedback? Fill out the form below and we'll get back to you as soon as possible.</p>
         <form id="contactForm">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -38,8 +39,7 @@
             <button type="submit">Send Message</button>
             <div id="formFeedback"></div>
         </form>
-    </div>
-
+    </section>
     <script src="contact.js"></script> <!-- Link to your JavaScript file -->
 </body>
 

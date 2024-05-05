@@ -23,6 +23,7 @@
         </nav>
         <a class="cta" href="contact.php"><button>Contact</button></a>
     </header>
+    <h1>About Us</h1>
     <section>
         <p>Welcome to Vows & Venues, your ultimate destination for booking the perfect venue for your wedding day.
             Founded in 2024, we specialize in helping couples find and book venues that match their vision, budget, and

@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a class="cta" href="contact.php"><button>Contact</button></a>
     </header>
     <h1>Available Venues</h1>
-
+    <section>
     <form method="POST" action="find_a_venue.php">
         <label for="date">Wedding Date:</label>
         <input type="date" id="date" name="date" required>
@@ -93,6 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit" name="submit">Search Venues</button>
     </form>
+    </section>
+    <section>
     <div id="venues-container">
         <?php
         $displayed_venues = []; // Array to keep track of displayed venues
@@ -156,6 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         endforeach;
         ?>
     </div>
+    </section>
     <script src="script.js"></script>
 </body>
 
