@@ -26,8 +26,8 @@
     <div class="image-container">
         <img src="reef.png" alt="Reef Image" id="background-image">
         <div class="text-overlay">
-            <h1>Welcome to Our Wedding Service</h1>
-            <p>Discover beautiful wedding venues and book them effortlessly.</p>
+            <h1>Welcome to Vows & Venues</h1>
+            <p>Discover wedding venues and book them effortlessly.</p>
             <a href="find_a_venue.php"><button>Find a Venue</button></a>
         </div>
     </div>

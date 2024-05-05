@@ -147,8 +147,8 @@ h1{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px 20%;
-  margin: 40px;
+  padding: 20px;
+  margin: 40px 400px;
   border: 2px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -194,4 +194,137 @@ h1{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+}
+
+.contact-form textarea {
+  height: 150px; /* Adjust height as needed */
+  /* Ensures the textarea expands to fit the content */
+  resize: vertical;
+
+}
+
+.contact-form button {
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+/* General styles for the form container */
+.venue-filters {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for form elements */
+.venue-filters form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Styles for labels */
+.venue-filters label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Styles for input fields and select elements */
+.venue-filters input[type="date"],
+.venue-filters input[type="range"],
+.venue-filters select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+/* Style for range input with live update display */
+.venue-filters input[type="range"] {
+  -webkit-appearance: none; /* Overrides default appearance */
+  appearance: none;
+  background: #ddd;
+  height: 5px;
+  outline: none; /* Removes the outline */
+}
+
+.venue-filters input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007BFF;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.venue-filters input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007BFF;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Styles for the submit button */
+.venue-filters button {
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.venue-filters button:hover {
+  background-color: #003974;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .venue-filters {
+      padding: 10px;
+  }
+
+  .venue-filters form {
+      gap: 10px;
+  }
 }

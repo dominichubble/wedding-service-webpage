@@ -74,12 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </header>
     <h1>Available Venues</h1>
     <section>
+        <div class="venue-filters">
     <form method="POST" action="find_a_venue.php">
         <label for="date">Wedding Date:</label>
         <input type="date" id="date" name="date" required>
 
         <label for="partySize">Party Size: <span id="partySizeValue">50</span></label>
-        <input type="range" id="partySize" name="partySize" min="10" max="300" value="50"
+        <input type="range" id="partySize" name="partySize" min="50" max="200" value="1000"
             oninput="updatePartySizeValue(this.value)" required>
 
         <label for="cateringGrade">Catering Grade:</label>
@@ -93,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit" name="submit">Search Venues</button>
     </form>
+    </div>
     </section>
     <section>
     <div id="venues-container">
