@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // File to write to
     $file = 'contacts.txt';
-
     // Open the file and append the data
     file_put_contents($file, $contact_data, FILE_APPEND | LOCK_EX);
 

@@ -10,10 +10,12 @@
 </head>
 
 <body>
-<header>
+    <header>
         <div class="nav_container">
             <nav class="nav_checkbox">
-                <a href="wedding.php" class="logo"><h2>Vows & Venues</h2></a>
+                <a href="wedding.php" class="logo">
+                    <h2>Vows & Venues</h2>
+                </a>
                 <input type="checkbox" id="tab_nav" class="tab_nav">
                 <label for="tab_nav" class="label">
                     <div class="burger"></div>
@@ -28,7 +30,7 @@
                 </ul>
             </nav>
         </div>
-        
+
     </header>
     <h1>Contact Us</h1>
     <section>
@@ -68,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Assume all data is valid and not empty
     // Here you can integrate an email sending function or database insertion
     //echo "Success";  // Respond back to the AJAX call
+
 } else {
     // Not a POST request
     header('HTTP/1.1 400 Bad Request', true, 400);

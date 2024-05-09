@@ -47,7 +47,7 @@ header {
 }
 
 .logo {
-  padding-left: 10px;
+  padding-left: 40px;
 }
 
 .tab_nav {
@@ -76,7 +76,7 @@ header {
 
 .content_nav li {
   display: inline-block;
-  padding-right: 10px;
+  padding-right: 40px;
 }
 
 .content_nav li a {
