@@ -28,34 +28,109 @@ span {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 10%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
   background-color: #24252a;
+}
+.nav_container {
+  width: 100%;
+  margin: auto;
+}
+
+.nav_checkbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .logo {
-  cursor: pointer;
-  height: 60px;
-  width: auto;
+  padding-left: 10px;
 }
 
-.nav_links {
+.tab_nav {
+  outline: none;
+  display: none;
+}
+
+.label {
+  display: none;
+  color: white;
+}
+
+.burger {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin-top: 5px;
+}
+
+.content_nav {
+  grid-column: 3;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.nav_links li {
+.content_nav li {
   display: inline-block;
-  padding: 0 20px;
+  padding-right: 10px;
 }
 
-.nav_links li a {
-  transition: all 0.3s ease 0s;
+.content_nav li a {
+  text-decoration: none;
+  color: white;
+  position: relative;
 }
 
-.nav_links li a:hover {
-  color: #0088a9;
+.content_nav li a::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform-origin: right;
+  transform: scale(0, 1);
+  transition: transform ease-in-out 0.5s;
+}
+
+.content_nav li a:hover::after {
+  transform: scale(1, 1);
+}
+
+@media screen and (max-width: 1280px) {
+  .nav_container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .label {
+    display: grid;
+    cursor: pointer;
+    grid-column: 3;
+    padding-right: 10px;
+  }
+  .content_nav {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1/4;
+    text-align: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: all ease-in-out 0.6s;
+  }
+
+  .nav_checkbox input:checked ~ .content_nav {
+    max-height: 500px;
+  }
+  .content_nav li {
+    padding: 15px 0px;
+  }
 }
 
 button {
@@ -109,6 +184,7 @@ button:hover {
   font-size: 1.5em; /* Smaller for compact design */
   margin-bottom: 0.5em; /* Space between the h1 and p */
   background-color: rgba(0, 0, 0, 0);
+  margin-top: 10px;
 }
 
 .text-overlay p {
@@ -130,7 +206,8 @@ section {
 
 h1 {
   font-size: 2em; /* Large heading for emphasis */
-  margin: 40px; /* Space between the heading and the content */
+  margin-top: 100px; /* Space between the heading and the content */
+  text-align: center; /* Center aligns the heading */
 }
 
 /* Container that holds all venues */
@@ -180,6 +257,9 @@ h1 {
   .venue-details-right {
     flex: none; /* Removes the flex grow and shrink abilities */
     width: 100%; /* Each child will take full width of the container */
+  }
+  section {
+    padding: 0px; /* Adjusted padding for better spacing on smaller screens */
   }
 }
 

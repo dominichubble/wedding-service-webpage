@@ -10,39 +10,51 @@
 </head>
 
 <body>
-    <header>
-        <img src="logo.png" alt="Vows & Venues Logo" class="logo">
-        <nav>
-            <div class="nav_links">
-                <ul>
+<header>
+        <div class="nav_container">
+            <nav class="nav_checkbox">
+                <a href="wedding.php" class="logo"><h2>Vows & Venues</h2></a>
+                <input type="checkbox" id="tab_nav" class="tab_nav">
+                <label for="tab_nav" class="label">
+                    <div class="burger"></div>
+                    <div class="burger"></div>
+                    <div class="burger"></div>
+                </label>
+                <ul class="content_nav">
                     <li><a href="wedding.php">Home</a></li>
                     <li><a href="find_a_venue.php">Find a Venue</a></li>
                     <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
-            </div>
-        </nav>
-        <a class="cta" href="contact.php"><button>Contact</button></a>
+            </nav>
+        </div>
+        
     </header>
     <h1>About Vows & Venues</h1>
     <main>
         <div class="about-section">
             <h2>Our Mission</h2>
-            <p>We strive to provide the best wedding venue options...</p>
+            <p>At Vows & Venues, our mission is to simplify the journey of booking your dream wedding venue. We believe that every couple deserves a magical and stress-free wedding experience, and our goal is to make that possible through a seamless, transparent, and user-friendly online platform.</p>
         </div>
         <div class="about-section">
             <h2>What We Do</h2>
-            <p>Explore our curated lists of venues...</p>
+            <p>At Vows & Venues, we streamline the search for your perfect wedding venue by offering a curated selection of high-quality options tailored to meet diverse tastes and budgets. Our platform features advanced search tools, detailed venue information, virtual tours, and personalized recommendations, ensuring a seamless and stress-free experience. From the initial search to the final booking, we provide all the resources you need to find and secure a venue that perfectly matches your vision and preferences, making your special day unforgettable.</p>
         </div>
         <div class="about-section">
             <h2>Meet Our Team</h2>
             <div class="team-members">
                 <div class="team-member">
-                    <img src="-ashby_castle.jpg" alt="Team Member 1">
+                    <img src="-frontend_dev.JPG" alt="Team Member 1">
                     <p>Name: Dominic Hubble</p>
                     <p>Role: Front-End Developer</p>
                 </div>
                 <div class="team-member">
-                    <img src="-ashby_castle.jpg" alt="Team Member 2">
+                    <img src="-wedding_planner.jpg" alt="Team Member 2">
+                    <p>Name: Dominic Hubble</p>
+                    <p>Role: Wedding Planner</p>
+                </div>
+                <div class="team-member">
+                    <img src="-backend_dev.JPG" alt="Team Member 2">
                     <p>Name: Dominic Hubble</p>
                     <p>Role: Back-End Developer</p>
                 </div>

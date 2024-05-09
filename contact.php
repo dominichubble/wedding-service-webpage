@@ -10,18 +10,25 @@
 </head>
 
 <body>
-    <header>
-        <img src="logo.png" alt="Vows & Venues Logo" class="logo">
-        <nav>
-            <div class="nav_links">
-                <ul>
+<header>
+        <div class="nav_container">
+            <nav class="nav_checkbox">
+                <a href="wedding.php" class="logo"><h2>Vows & Venues</h2></a>
+                <input type="checkbox" id="tab_nav" class="tab_nav">
+                <label for="tab_nav" class="label">
+                    <div class="burger"></div>
+                    <div class="burger"></div>
+                    <div class="burger"></div>
+                </label>
+                <ul class="content_nav">
                     <li><a href="wedding.php">Home</a></li>
                     <li><a href="find_a_venue.php">Find a Venue</a></li>
                     <li><a href="about.php">About Us</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
-            </div>
-        </nav>
-        <a class="cta" href="contact.php"><button>Contact</button></a>
+            </nav>
+        </div>
+        
     </header>
     <h1>Contact Us</h1>
     <section>
