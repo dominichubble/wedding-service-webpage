@@ -59,10 +59,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-<header>
+    <header>
         <div class="nav_container">
             <nav class="nav_checkbox">
-                <a href="wedding.php" class="logo"><h2>Vows & Venues</h2></a>
+                <a href="wedding.php" class="logo">
+                    <h2>Vows & Venues</h2>
+                </a>
                 <input type="checkbox" id="tab_nav" class="tab_nav">
                 <label for="tab_nav" class="label">
                     <div class="burger"></div>
@@ -77,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </ul>
             </nav>
         </div>
-        
+
     </header>
     <h1>Available Venues</h1>
     <section>
@@ -168,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <p><b>Total Cost: £<?php echo $totalCost ?></b></p>
                         <div class="venue-booking">
-                            <button type="submit" name="submit">Book Venue</button>
+                        <button type="button" onclick="toggleModal(true, '<?php echo $venue['venue_id']; ?>')">Book Venue</button>
                         </div>
                     </div>
                 <?php endif;
@@ -176,6 +178,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ?>
         </div>
     </section>
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleModal(false)">&times;</span>
+            <h2>Confirm Your Booking</h2>
+            <form id="emailForm">
+                <input type="hidden" id="venueId" name="venueId">
+                <label for="email">Enter your Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Send Confirmation</button>
+            </form>
+            <div id="modalMessage"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <footer>
         <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>

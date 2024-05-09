@@ -63,3 +63,29 @@ function initMap() {
     });
 }
 
+function toggleModal(show, venueId = null) {
+    const modal = document.getElementById('emailModal');
+    document.getElementById('venueId').value = venueId || '';
+    modal.style.display = show ? 'block' : 'none';
+}
+
+document.getElementById('emailForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const venueId = formData.get('venueId');
+
+    fetch('send_confirmation_email.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        const messageDiv = document.getElementById('modalMessage');
+        if (data.success) {
+            messageDiv.innerHTML = `<span style="color: black;">Booking confirmed! A confirmation email has been sent to ${data.email}.</span>`;
+        } else {
+            messageDiv.innerHTML = '<span style="color: black;">Error sending confirmation email. Please try again.</span>';
+        }        
+    })
+    .catch(error => console.error('Error:', error));
+});
