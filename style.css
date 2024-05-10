@@ -663,3 +663,18 @@ footer {
   background-color: #0056b3; /* Darken background on hover */
 }
 
+@media (max-width: 768px) {
+  .compare-form {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .compare-form select {
+    width: 100%;
+  }
+
+  .compare-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
