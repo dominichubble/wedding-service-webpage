@@ -1,4 +1,24 @@
+
 <?php
+
+
+
+
+//this code works, just doesn't work on server for some reason
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Assign and sanitize input data

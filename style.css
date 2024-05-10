@@ -432,7 +432,7 @@ h1 {
 /* Styles for the submit button */
 .venue-filters button {
   padding: 10px;
-  background-color: #0056b3;
+  background-color: rgba(0, 136, 169, 1);
   color: white;
   border: none;
   border-radius: 5px;
@@ -486,7 +486,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-#booking-graph {
+#booking-graph, #comparison-graph {
   padding: 20px;
   margin: 20px auto;
   max-width: 1000px; /* Limits the width of the section for better graph visibility */
@@ -496,24 +496,24 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
-#booking-graph h2 {
+#booking-graph h2, #comparison-graph h2{
   text-align: center; /* Centers the title of the graph */
   color: white; /* Dark grey color for better readability */
   padding-bottom: 10px; /* Space below the title */
 }
 
-canvas#bookingChart {
+canvas#bookingChart, #comparisonChart {
   width: 100% !important; /* Ensures the canvas takes full width of the container */
   height: auto !important; /* Auto height for maintaining aspect ratio */
 }
 
 @media (max-width: 768px) {
-  #booking-graph {
+  #booking-graph, #comparison-graph {
     width: 95%; /* Allows the section to fill more of the screen on smaller devices */
     padding: 10px;
   }
 
-  canvas#bookingChart {
+  canvas#bookingChart, #comparisonChart {
     max-width: 100%; /* Ensures the canvas does not overflow on smaller screens */
     height: 400px; /* Fixed height to ensure the graph is visible */
   }
@@ -649,19 +649,6 @@ footer {
 }
 
 
-.compare-form button {
-  background-color: #007BFF; /* Blue background */
-  color: #fff; /* White text */
-  padding: 10px 20px; /* Add some padding */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Round the corners */
-  cursor: pointer; /* Change cursor on hover */
-  transition: background-color 0.3s ease; /* Transition for hover effect */
-}
-
-.compare-form button:hover {
-  background-color: #0056b3; /* Darken background on hover */
-}
 
 @media (max-width: 600px) {
   .compare-table {
@@ -684,3 +671,5 @@ footer {
     max-width: 100%;
   }
 }
+
+
