@@ -108,7 +108,7 @@ header {
   }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 768px) {
   .label {
     display: grid;
     cursor: pointer;
@@ -663,18 +663,24 @@ footer {
   background-color: #0056b3; /* Darken background on hover */
 }
 
-@media (max-width: 768px) {
-  .compare-form {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .compare-form select {
-    width: 100%;
-  }
-
+@media (max-width: 600px) {
   .compare-table {
     width: 100%;
     overflow-x: auto;
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  .compare-form {
+    flex-direction: column;
+  }
+  .compare-form button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .venue-image {
+    max-width: 100%;
   }
 }
