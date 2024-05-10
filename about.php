@@ -44,17 +44,17 @@
             <h2>Meet Our Team</h2>
             <div class="team-members">
                 <div class="team-member">
-                    <img src="-frontend_dev.JPG" alt="Team Member 1">
+                    <img src="frontend_dev.JPG" alt="Team Member 1">
                     <p>Name: Dominic Hubble</p>
                     <p>Role: Front-End Developer</p>
                 </div>
                 <div class="team-member">
-                    <img src="-wedding_planner.jpg" alt="Team Member 2">
+                    <img src="wedding_planner.jpg" alt="Team Member 2">
                     <p>Name: Dominic Hubble</p>
                     <p>Role: Wedding Planner</p>
                 </div>
                 <div class="team-member">
-                    <img src="-backend_dev.JPG" alt="Team Member 2">
+                    <img src="backend_dev.JPG" alt="Team Member 2">
                     <p>Name: Dominic Hubble</p>
                     <p>Role: Back-End Developer</p>
                 </div>
