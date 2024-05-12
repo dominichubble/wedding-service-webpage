@@ -496,6 +496,7 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
+
 #booking-graph h2, #comparison-graph h2{
   text-align: center; /* Centers the title of the graph */
   color: white; /* Dark grey color for better readability */
@@ -516,6 +517,12 @@ canvas#bookingChart, #comparisonChart {
   canvas#bookingChart, #comparisonChart {
     max-width: 100%; /* Ensures the canvas does not overflow on smaller screens */
     height: 400px; /* Fixed height to ensure the graph is visible */
+  }
+  #booking-graph h2, #comparison-graph h2 {
+    font-size: 15px; /* Smaller font size for better fit on smaller screens */
+  }
+  #comparison-graph {
+    height: 500px; /* Adjusted height for better visibility */
   }
 }
 

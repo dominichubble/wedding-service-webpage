@@ -24,9 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
-            beginAtZero: true,
+            beginAtZero: false,
+
             ticks: {
               callback: function (value, index, values) {
                 return "£" + value;

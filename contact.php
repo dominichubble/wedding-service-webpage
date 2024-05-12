@@ -34,9 +34,10 @@
 
     </header>
     <h1>Contact Us</h1>
-    <section>
-        <p>Have a question or feedback? Fill out the form below and we'll get back to you as soon as possible.</p>
-    </section>
+        <div class="about-section">
+            <h2>Get in Touch</h2>
+            <p>Have a question or feedback? Fill out the form below and we'll get back to you as soon as possible.</p>
+        </div>
     <section>
         <div class="contact-form">
             <form id="contactForm" method="post">
