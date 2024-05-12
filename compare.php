@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </tbody>
                 </table>
                 <section id="comparison-graph">
-                <h2>Price Comparison</h2>
+                    <h2>Price Comparison</h2>
                     <canvas id="comparisonChart"></canvas>
                 </section>
 
@@ -147,67 +147,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer>
         <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
     </footer>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <?php
+    // Encode data for JavaScript
+    echo "<script>
+var venue1Data = " . json_encode($venue1Data) . ";
+var venue2Data = " . json_encode($venue2Data) . ";
+</script>";
+    ?>
+
+    <script src="compare.js"></script>
+
 </body>
 
 </html>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-<?php
-
-// Encode data for JavaScript
-echo "<script>
-    var venue1Data = " . json_encode($venue1Data) . ";
-    var venue2Data = " . json_encode($venue2Data) . ";
-</script>";
-?>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var ctx = document.getElementById('comparisonChart').getContext('2d');
-    var comparisonChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Weekday Price', 'Weekend Price',],
-            datasets: [{
-                label: '<?= $venue1Data['name'] ?>',
-                data: [<?= $venue1Data['weekday_price'] ?>, <?= $venue1Data['weekend_price'] ?>],
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "#fff",
-                borderWidth: 1
-            }, {
-                label: '<?= $venue2Data['name'] ?>',
-                data: [<?= $venue2Data['weekday_price'] ?>, <?= $venue2Data['weekend_price'] ?>],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            color: "#fff", // Sets the y-axis tick color to white
-          },
-        },
-        x: {
-          ticks: {
-            color: "#fff", // Sets the x-axis tick color to white
-          },
-        },
-      },
-      plugins: {
-        legend: {
-          labels: {
-            color: "#fff", // Optional: Sets the legend text color to white
-          },
-          display: true,
-          position: "top",
-        },
-      },
-    },
-    });
-
-});
-</script>
