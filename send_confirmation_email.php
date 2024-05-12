@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($email) {
         $subject = "Your Wedding Venue Booking Confirmation";
         $message = "Thank you for booking your venue with Vows & Venues. Your booking ID is $venueId.";
-        $headers = "From: D.Hubble-23@student.lboro.ac.uk"; // wont work on server
+        $headers = "From: D.Hubble-23@student.lboro.ac.uk"; 
 
         if (mail($email, $subject, $message, $headers)) {
             echo json_encode(['success' => true, 'email' => $email]);
