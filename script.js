@@ -1,4 +1,4 @@
-window.initMap = function () {
+window.initMap = async function () {
   document.querySelectorAll(".map").forEach(function (mapElement) {
     var venueId = mapElement.id.split("-")[1];
     var latElement = document.getElementById("lat-" + venueId);
