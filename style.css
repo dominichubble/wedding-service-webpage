@@ -567,6 +567,10 @@ footer {
   
 }
 
+.modal-content input[type="email"] {
+  color: black;
+}
+
 .close {
   color: #aaa;
   float: right;
