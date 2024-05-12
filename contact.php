@@ -39,7 +39,7 @@
     </section>
     <section>
         <div class="contact-form">
-            <form id="contactForm">
+            <form id="contactForm" method="post">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -54,27 +54,20 @@
             <div id="formFeedback"></div>
         </div>
     </section>
-    <script src="contact.js"></script> <!-- Link to your JavaScript file -->
+
     <footer>
         <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
     </footer>
 </body>
+<script src="contact.js"></script>
 
 </html>
 
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = strip_tags(trim($_POST["name"]));
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
     $message = strip_tags(trim($_POST["message"]));
-
-    // Assume all data is valid and not empty
-    // Here you can integrate an email sending function or database insertion
-    //echo "Success";  // Respond back to the AJAX call
-
-} else {
-    // Not a POST request
-    header('HTTP/1.1 400 Bad Request', true, 400);
-    //echo "Invalid request";
 }
 ?>
