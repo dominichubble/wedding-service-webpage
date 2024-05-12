@@ -53,8 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Venue | Vows & Venues</title>
     <link rel="stylesheet" href="style.css">
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPg0GGMpyIU-6sU32eNEAWz1GqcrwVTW0&callback=initMap&v=weekly"></script>
     <link rel="icon" type="image/x-icon" href="logo.ico">
 </head>
 
@@ -171,7 +169,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <p><b>Total Cost: £<?php echo $totalCost ?></b></p>
                         <div class="venue-booking">
-                        <button type="button" onclick="toggleModal(true, '<?php echo $venue['venue_id']; ?>')">Book Venue</button>
+                            <button type="button" onclick="toggleModal(true, '<?php echo $venue['venue_id']; ?>')">Book
+                                Venue</button>
                         </div>
                     </div>
                 <?php endif;
@@ -192,8 +191,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="modalMessage"></div>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPg0GGMpyIU-6sU32eNEAWz1GqcrwVTW0&callback=initMap&v=weekly"></script>
     <footer>
         <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
     </footer>

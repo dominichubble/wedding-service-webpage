@@ -48,19 +48,19 @@ function createChart(labels, data) {
         y: {
           beginAtZero: true,
           ticks: {
-            color: "#fff", // Sets the y-axis tick color to white
+            color: "#fff", 
           },
         },
         x: {
           ticks: {
-            color: "#fff", // Sets the x-axis tick color to white
+            color: "#fff", 
           },
         },
       },
       plugins: {
         legend: {
           labels: {
-            color: "#fff", // Optional: Sets the legend text color to white
+            color: "#fff", 
           },
           display: true,
           position: "top",
