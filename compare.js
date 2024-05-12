@@ -25,10 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
         scales: {
           y: {
-            beginAtZero: false,
+            beginAtZero: true,
 
             ticks: {
               callback: function (value, index, values) {

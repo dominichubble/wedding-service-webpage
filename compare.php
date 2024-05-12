@@ -114,13 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </tr>
                         <tr>
                             <td>Weekday Price</td>
-                            <td><?= $venue1Data['weekday_price'] ?></td>
-                            <td><?= $venue2Data['weekday_price'] ?></td>
+                            <td>£<?= $venue1Data['weekday_price'] ?></td>
+                            <td>£<?= $venue2Data['weekday_price'] ?></td>
                         </tr>
                         <tr>
                             <td>Weekend Price</td>
-                            <td><?= $venue1Data['weekend_price'] ?></td>
-                            <td><?= $venue2Data['weekend_price'] ?></td>
+                            <td>£<?= $venue1Data['weekend_price'] ?></td>
+                            <td>£<?= $venue2Data['weekend_price'] ?></td>
                         </tr>
                         <tr>
                             <td>Rating</td>

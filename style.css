@@ -102,37 +102,6 @@ header {
   transform: scale(1, 1);
 }
 
-@media screen and (max-width: 1280px) {
-  .nav_container {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .label {
-    display: grid;
-    cursor: pointer;
-    grid-column: 3;
-    padding-right: 10px;
-  }
-  .content_nav {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-column: 1/4;
-    text-align: center;
-    max-height: 0;
-    overflow: hidden;
-    transition: all ease-in-out 0.6s;
-  }
-
-  .nav_checkbox input:checked ~ .content_nav {
-    max-height: 500px;
-  }
-  .content_nav li {
-    padding: 15px 0px;
-  }
-}
-
 button {
   padding: 9px 25px;
   background-color: rgba(0, 136, 169, 1);
@@ -231,36 +200,6 @@ h1 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: calc(50% - 40px);
   box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  #venues-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  .venue {
-    width: 90%;
-    flex-direction: column;
-  }
-  .venue-media {
-    flex-direction: column;
-  }
-  .venue img,
-  .venue .map {
-    width: 100%; /* Full width to fill the container */
-    margin-bottom: 10px; /* Adds space between stacked elements */
-  }
-  .venue-details {
-    flex-direction: column; /* Stacks the children vertically on smaller screens */
-  }
-  .venue-details-left,
-  .venue-details-right {
-    flex: none; /* Removes the flex grow and shrink abilities */
-    width: 100%; /* Each child will take full width of the container */
-  }
-  section {
-    padding: 0px; /* Adjusted padding for better spacing on smaller screens */
-  }
 }
 
 /* Container for image and map */
@@ -448,17 +387,6 @@ h1 {
   color: #333; /* Dark gray color for dropdown text */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .venue-filters {
-    padding: 10px;
-  }
-
-  .venue-filters form {
-    gap: 10px;
-  }
-}
-
 .about-section {
   margin: 40px;
   padding: 20px;
@@ -486,7 +414,8 @@ h1 {
   margin-bottom: 10px;
 }
 
-#booking-graph, #comparison-graph {
+#booking-graph,
+#comparison-graph {
   padding: 20px;
   margin: 20px auto;
   max-width: 1000px; /* Limits the width of the section for better graph visibility */
@@ -496,34 +425,17 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
-
-#booking-graph h2, #comparison-graph h2{
+#booking-graph h2,
+#comparison-graph h2 {
   text-align: center; /* Centers the title of the graph */
   color: white; /* Dark grey color for better readability */
   padding-bottom: 10px; /* Space below the title */
 }
 
-canvas#bookingChart, #comparisonChart {
+canvas#bookingChart,
+canvas#comparisonChart {
   width: 100% !important; /* Ensures the canvas takes full width of the container */
   height: auto !important; /* Auto height for maintaining aspect ratio */
-}
-
-@media (max-width: 768px) {
-  #booking-graph, #comparison-graph {
-    width: 95%; /* Allows the section to fill more of the screen on smaller devices */
-    padding: 10px;
-  }
-
-  canvas#bookingChart, #comparisonChart {
-    max-width: 100%; /* Ensures the canvas does not overflow on smaller screens */
-    height: 400px; /* Fixed height to ensure the graph is visible */
-  }
-  #booking-graph h2, #comparison-graph h2 {
-    font-size: 15px; /* Smaller font size for better fit on smaller screens */
-  }
-  #comparison-graph {
-    height: 500px; /* Adjusted height for better visibility */
-  }
 }
 
 footer {
@@ -545,7 +457,6 @@ footer {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
-
 }
 
 .modal-content h2 {
@@ -571,7 +482,6 @@ footer {
   max-width: 400px;
   text-align: center;
   border-radius: 8px;
-  
 }
 
 .modal-content input[type="email"] {
@@ -586,7 +496,8 @@ footer {
   cursor: pointer;
 }
 
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
   color: black;
 }
 
@@ -610,14 +521,7 @@ footer {
 
 /* Highlights for differences */
 .difference {
-  background-color: #ffef96;  /* Light yellow to highlight differences */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-      width: 95%;
-  }
+  background-color: #ffef96; /* Light yellow to highlight differences */
 }
 
 .container {
@@ -659,28 +563,102 @@ footer {
   color: black; /* Black text for dropdown options */
 }
 
-
-
 @media (max-width: 600px) {
   .compare-table {
     width: 100%;
     overflow-x: auto;
     display: block;
   }
-}
-@media (max-width: 600px) {
+
   .compare-form {
     flex-direction: column;
   }
+
   .compare-form button {
     width: 100%;
     margin-top: 10px;
   }
-}
-@media (max-width: 600px) {
+
   .venue-image {
     max-width: 100%;
   }
+
+  .comparison-graph {
+    width: 100%;
+  }
 }
 
+@media (max-width: 768px) {
+  .label {
+    display: grid;
+    cursor: pointer;
+    grid-column: 3;
+    padding-right: 10px;
+  }
 
+  .content_nav {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1/4;
+    text-align: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: all ease-in-out 0.6s;
+  }
+
+  .nav_checkbox input:checked ~ .content_nav {
+    max-height: 500px;
+  }
+
+  .content_nav li {
+    padding: 15px 0px;
+  }
+
+  .venue-filters {
+    padding: 10px;
+  }
+
+  .venue-filters form {
+    gap: 10px;
+  }
+
+  #venues-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .venue {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .venue-media {
+    flex-direction: column;
+  }
+
+  .venue img,
+  .venue .map {
+    width: 100%; /* Full width to fill the container */
+    margin-bottom: 10px; /* Adds space between stacked elements */
+  }
+
+  .venue-details {
+    flex-direction: column; /* Stacks the children vertically on smaller screens */
+  }
+
+  .venue-details-left,
+  .venue-details-right {
+    flex: none; /* Removes the flex grow and shrink abilities */
+    width: 100%; /* Each child will take full width of the container */
+  }
+
+  section {
+    padding: 0px; /* Adjusted padding for better spacing on smaller screens */
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .nav_container {
+    width: 100%;
+  }
+}
