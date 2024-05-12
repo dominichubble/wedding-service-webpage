@@ -2,10 +2,8 @@
 include 'fetch_venue_data.php'; // This will include the PHP script logic
 include 'fetch_venue_booking.php'; // This will include the PHP script logic
 $venues = json_decode($jsonData, true);
-echo "<script>console.log($jsonData);</script>";
 $filtered_venues = null;
 $bookings = json_decode($jsonBookingData, true);
-echo "<script>console.log($jsonBookingData);</script>";
 
 $start = 0;
 if ($start == 0) {
@@ -24,21 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check bookings for each venue
         foreach ($bookings as $booking) {
             if ($booking['venue_id'] === $venue['venue_id'] && $booking['booking_date'] === $date) {
-                // echo "<script>console.log('".$venue['name']."  ".$booking[$venue['venue_id']]['booking_date']. $date."');</script>";
                 $isBooked = true;
                 break;  // No need to check further, venue is booked on this date
             }
         }
-        //echo "<script>console.log('"."ID: ".$venue['venue_id']." ".$venue['name']."');</script>";
-        //echo "<script>console.log('"."Booking Date: ".$bookings[$venue['venue_id']]['booking_date']. " Date Entered:". $date."');</script>";
-        //echo "<script>console.log('"."is Booked: ".$isBooked."');</script>";
-        //echo "<script>console.log('"." Capacity: ".$venue['capacity']." PartySize ". $partySize ."');</script>";
-        //echo "<script>console.log('"." Venue Grade: ".$venue['grade'] ." Catering Grade: ". $cateringGrade."');</script>";
-
         // Check if the venue is not booked, has enough capacity, and matches the catering grade
         if ($isBooked == false && $venue['capacity'] >= $partySize && $venue['grade'] == $cateringGrade) {
             $filtered_venues[] = $venue;
-            // echo "<script>console.log('True');</script>";
         }
     }
 }
