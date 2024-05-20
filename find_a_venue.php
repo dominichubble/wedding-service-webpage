@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="script.js"></script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPg0GGMpyIU-6sU32eNEAWz1GqcrwVTW0&callback=initMap&v=weekly"></script>
+        src="https://maps.googleapis.com/maps/api/js?callback=initMap&v=weekly"></script>
     <footer>
         <p>Copyright © 2024 Vows & Venues. All rights reserved.</p>
     </footer>
